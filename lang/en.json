@@ -7,9 +7,23 @@
   "BitDRoller.RollTokenDescription": "Choose your dice pool. Choose your position. Choose your effect.",
   "BitDRoller.RollNumberOfDice": "Number of Dice",
 
+  "BitDRoller.Action": "Action",
   "BitDRoller.Position": "Position",
   "BitDRoller.Effect": "Effect",
   "BitDRoller.Modifier": "Modifier",
+
+  "BitDRoller.ActionHunt": "Hunt",
+  "BitDRoller.ActionStudy": "Study",
+  "BitDRoller.ActionSurvey": "Survey",
+  "BitDRoller.ActionTinker": "Tinker",
+  "BitDRoller.ActionFinesse": "Finesse",
+  "BitDRoller.ActionProwl": "Prowl",
+  "BitDRoller.ActionSkirmish": "Skirmish",
+  "BitDRoller.ActionWreck": "Wreck",
+  "BitDRoller.ActionAttune": "Attune",
+  "BitDRoller.ActionCommand": "Command",
+  "BitDRoller.ActionConsort": "Consort",
+  "BitDRoller.ActionSway": "Sway",
 
   "BitDRoller.PositionControlled": "Controlled",
   "BitDRoller.PositionRisky": "Risky",
