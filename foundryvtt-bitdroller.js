@@ -21,8 +21,27 @@ async BitDRollerPopup() {
             ${Array(maxDice + 1).fill().map((item, i) => `<option value="${i}">${i}d</option>`).join('')}
           </select>
           <script>$('#dice option[value="' + game.settings.get("foundryvtt-bitdroller", "defaultDiceCount") + '"]').prop("selected", "selected");</script>
-          </div>
-          <div class="form-group">
+        </div>
+        <div class="form-group">
+          <label>${game.i18n.localize('BitDRoller.Action')}:</label>
+          <select id="action" name="action">
+            <option value=""></option>
+            <option value="hunt">${game.il8n.localize('BitDRoller.ActionHunt')}</option>
+            <option value="study">${game.il8n.localize('BitDRoller.ActionStudy')}</option>
+            <option value="survey">${game.il8n.localize('BitDRoller.ActionSurvey')}</option>
+            <option value="tinker">${game.il8n.localize('BitDRoller.ActionTinker')}</option>
+            <option value="finesse">${game.il8n.localize('BitDRoller.ActionFinesse')}</option>
+            <option value="prowl">${game.il8n.localize('BitDRoller.ActionProwl')}</option>
+            <option value="skirmish">${game.il8n.localize('BitDRoller.ActionSkirmish')}</option>
+            <option value="wreck">${game.il8n.localize('BitDRoller.ActionWreck')}</option>
+            <option value="attune">${game.il8n.localize('BitDRoller.ActionAttune')}</option>
+            <option value="command">${game.il8n.localize('BitDRoller.ActionCommand')}</option>
+            <option value="consort">${game.il8n.localize('BitDRoller.ActionConsort')}</option>
+            <option value="sway">${game.il8n.localize('BitDRoller.ActionSway')}</option>
+          </select>
+          <script>$('#dice option[value="' + game.settings.get("foundryvtt-bitdroller", "defaultDiceCount") + '"]').prop("selected", "selected");</script>
+        </div>
+        <div class="form-group">
           <label>${game.i18n.localize('BitDRoller.Position')}:</label>
           <select id="pos" name="pos">
             <option value="controlled">${game.i18n.localize('BitDRoller.PositionControlled')}</option>
@@ -30,8 +49,8 @@ async BitDRollerPopup() {
             <option value="desperate">${game.i18n.localize('BitDRoller.PositionDesperate')}</option>
           </select>
           <script>$('#pos option[value="' + game.settings.get("foundryvtt-bitdroller", "defaultPosition") + '"]').prop("selected", "selected");</script>
-          </div>
-          <div class="form-group">
+        </div>
+        <div class="form-group">
           <label>${game.i18n.localize('BitDRoller.Effect')}:</label>
           <select id="fx" name="fx">
             <option value="limited">${game.i18n.localize('BitDRoller.EffectLimited')}</option>
@@ -49,9 +68,10 @@ async BitDRollerPopup() {
         callback: async (html) =>
         {
           const dice_amount = parseInt(html.find('[name="dice"]')[0].value);
+          const attribute = html.find('[name="action"]')[0].value;
           const position = html.find('[name="pos"]')[0].value;
           const effect = html.find('[name="fx"]')[0].value;
-          await this.BitDRoller("", dice_amount, position, effect);
+          await this.BitDRoller(attribute, dice_amount, position, effect);
         }
       },
       no: {
