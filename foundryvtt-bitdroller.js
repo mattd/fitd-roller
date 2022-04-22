@@ -184,7 +184,7 @@ async showChatRollMessage(r, zeromode, attribute = "", position = "", effect = "
  * @param {Boolean} zeromode whether to treat as if 0d
  * @returns {string} success/failure status of roll
  */
-getFitDActionRollStatus(rolls, zeromode = false) {
+getBitDActionRollStatus(rolls, zeromode = false) {
 
   let sorted_rolls = [];
   // Sort roll values from lowest to highest.
