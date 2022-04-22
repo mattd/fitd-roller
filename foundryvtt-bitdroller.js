@@ -68,7 +68,7 @@ async BitDRollerPopup() {
         callback: async (html) =>
         {
           const dice_amount = parseInt(html.find('[name="dice"]')[0].value);
-          const attribute = html.find('[name="action"]')[0].value;
+          const attribute = html.find('[name="action"]')[0].text;
           const position = html.find('[name="pos"]')[0].value;
           const effect = html.find('[name="fx"]')[0].value;
           await this.BitDRoller(attribute, dice_amount, position, effect);
