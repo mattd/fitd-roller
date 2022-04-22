@@ -3,7 +3,7 @@
   "title": "Blades in the Dark Roller",
   "description": "Provides a generic Dice Roller for Blades in the Dark games",
   "authors": ["megastruktur", "Andrew Garinger (agaringer#6498)", "Matt Dawson"],
-  "version": "1.6.1",
+  "version": "1.6.2",
   "minimumCoreVersion": "0.7.5",
   "compatibleCoreVersion": "9.224",
 
@@ -24,6 +24,6 @@
   ],
   "url": "https://github.com/mattd/foundryvtt-bitdroller",
   "manifest": "https://raw.githubusercontent.com/mattd/foundryvtt-bitdroller/main/module.json",
-  "download": "https://github.com/mattd/foundryvtt-bitdroller/archive/refs/tags/v1.6.1.zip",
+  "download": "https://github.com/mattd/foundryvtt-bitdroller/archive/refs/tags/v1.6.2.zip",
   "bugs": "https://github.com/mattd/foundryvtt-bitdroller/issues"
 }
