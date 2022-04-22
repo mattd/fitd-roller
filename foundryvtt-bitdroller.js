@@ -66,6 +66,8 @@ async BitDRollerPopup() {
         icon: "<i class='fas fa-check'></i>",
         label: game.i18n.localize('BitDRoller.Roll'),
         callback: async (html) =>
+        console.log('THIS IS HTML', html);
+        window.DUDE = html;
         {
           const dice_amount = parseInt(html.find('[name="dice"]')[0].value);
           const attribute = html.find('[name="action"]')[0].text;
