@@ -269,7 +269,7 @@ getBitDActionRollStatus(rolls, zeromode = false) {
 }
 
 Hooks.once("ready", () => {
-	game.bitdroller = new Roller();
+  game.bitdroller = new Roller();
 });
 
 // getSceneControlButtons
@@ -300,50 +300,50 @@ Hooks.once("init", () => {
   });
 
   game.settings.register("foundryvtt-bitdroller", "maxDiceCount", {
-		"name": game.i18n.localize("BitDRoller.maxDiceCountName"),
-		"hint": game.i18n.localize("BitDRoller.maxDiceCountHint"),
-		"scope": "world",
-		"config": true,
-		"default": 10,
-		"type": Number
-	});
+    "name": game.i18n.localize("BitDRoller.maxDiceCountName"),
+    "hint": game.i18n.localize("BitDRoller.maxDiceCountHint"),
+    "scope": "world",
+    "config": true,
+    "default": 10,
+    "type": Number
+  });
 
-	game.settings.register("foundryvtt-bitdroller", "defaultDiceCount", {
-		"name": game.i18n.localize("BitDRoller.defaultDiceCountName"),
-		"hint": game.i18n.localize("BitDRoller.defaultDiceCountHint"),
-		"scope": "world",
-		"config": true,
-		"default": 2,
-		"type": Number
-	});
+  game.settings.register("foundryvtt-bitdroller", "defaultDiceCount", {
+    "name": game.i18n.localize("BitDRoller.defaultDiceCountName"),
+    "hint": game.i18n.localize("BitDRoller.defaultDiceCountHint"),
+    "scope": "world",
+    "config": true,
+    "default": 2,
+    "type": Number
+  });
 
   game.settings.register("foundryvtt-bitdroller", "defaultPosition", {
-		"name": game.i18n.localize("BitDRoller.defaultPositionName"),
-		"hint": game.i18n.localize("BitDRoller.defaultPositionHint"),
-		"scope": "world",
-		"config": true,
-		"type": String,
-		"choices": {
-			"controlled": game.i18n.localize("BitDRoller.PositionControlled"),
-			"risky": game.i18n.localize("BitDRoller.PositionRisky"),
-			"desperate": game.i18n.localize("BitDRoller.PositionDesperate")
-		},
-		"default": "risky"
-	});
+    "name": game.i18n.localize("BitDRoller.defaultPositionName"),
+    "hint": game.i18n.localize("BitDRoller.defaultPositionHint"),
+    "scope": "world",
+    "config": true,
+    "type": String,
+    "choices": {
+      "controlled": game.i18n.localize("BitDRoller.PositionControlled"),
+      "risky": game.i18n.localize("BitDRoller.PositionRisky"),
+      "desperate": game.i18n.localize("BitDRoller.PositionDesperate")
+    },
+    "default": "risky"
+  });
 
-	game.settings.register("foundryvtt-bitdroller", "defaultEffect", {
-		"name": game.i18n.localize("BitDRoller.defaultEffectName"),
-		"hint": game.i18n.localize("BitDRoller.defaultEffectHint"),
-		"scope": "world",
-		"config": true,
-		"type": String,
-		"choices": {
-			"great": game.i18n.localize("BitDRoller.EffectGreat"),
-			"standard": game.i18n.localize("BitDRoller.EffectStandard"),
-			"limited": game.i18n.localize("BitDRoller.EffectLimited")
-		},
-		"default": "standard"
-	});
+  game.settings.register("foundryvtt-bitdroller", "defaultEffect", {
+    "name": game.i18n.localize("BitDRoller.defaultEffectName"),
+    "hint": game.i18n.localize("BitDRoller.defaultEffectHint"),
+    "scope": "world",
+    "config": true,
+    "type": String,
+    "choices": {
+      "great": game.i18n.localize("BitDRoller.EffectGreat"),
+      "standard": game.i18n.localize("BitDRoller.EffectStandard"),
+      "limited": game.i18n.localize("BitDRoller.EffectLimited")
+    },
+    "default": "standard"
+  });
 });
 
 console.log("BitDRoller | Blades in the Dark Dice Roller loaded");
