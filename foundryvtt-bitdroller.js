@@ -5,58 +5,58 @@ class Roller {
 */
 
 
-async FitDRollerPopup() {
+async BitDRollerPopup() {
 
-  const maxDice = game.settings.get("foundryvtt-fitdroller", "maxDiceCount");
-  const defaultDice = game.settings.get("foundryvtt-fitdroller", "defaultDiceCount") + 1;
+  const maxDice = game.settings.get("foundryvtt-bitdroller", "maxDiceCount");
+  const defaultDice = game.settings.get("foundryvtt-bitdroller", "defaultDiceCount") + 1;
 
   new Dialog({
-    title: `${game.i18n.localize('FitDRoller.RollTitle')}`,
+    title: `${game.i18n.localize('BitDRoller.RollTitle')}`,
     content: `
-      <h2>${game.i18n.localize('FitDRoller.Roll')}</h2>
+      <h2>${game.i18n.localize('BitDRoller.Roll')}</h2>
       <form>
         <div class="form-group">
-          <label>${game.i18n.localize('FitDRoller.RollNumberOfDice')}:</label>
+          <label>${game.i18n.localize('BitDRoller.RollNumberOfDice')}:</label>
           <select id="dice" name="dice">
             ${Array(maxDice + 1).fill().map((item, i) => `<option value="${i}">${i}d</option>`).join('')}
           </select>
-          <script>$('#dice option[value="' + game.settings.get("foundryvtt-fitdroller", "defaultDiceCount") + '"]').prop("selected", "selected");</script>
+          <script>$('#dice option[value="' + game.settings.get("foundryvtt-bitdroller", "defaultDiceCount") + '"]').prop("selected", "selected");</script>
           </div>
           <div class="form-group">
-          <label>${game.i18n.localize('FitDRoller.Position')}:</label>
+          <label>${game.i18n.localize('BitDRoller.Position')}:</label>
           <select id="pos" name="pos">
-            <option value="controlled">${game.i18n.localize('FitDRoller.PositionControlled')}</option>
-            <option value="risky">${game.i18n.localize('FitDRoller.PositionRisky')}</option>
-            <option value="desperate">${game.i18n.localize('FitDRoller.PositionDesperate')}</option>
+            <option value="controlled">${game.i18n.localize('BitDRoller.PositionControlled')}</option>
+            <option value="risky">${game.i18n.localize('BitDRoller.PositionRisky')}</option>
+            <option value="desperate">${game.i18n.localize('BitDRoller.PositionDesperate')}</option>
           </select>
-          <script>$('#pos option[value="' + game.settings.get("foundryvtt-fitdroller", "defaultPosition") + '"]').prop("selected", "selected");</script>
+          <script>$('#pos option[value="' + game.settings.get("foundryvtt-bitdroller", "defaultPosition") + '"]').prop("selected", "selected");</script>
           </div>
           <div class="form-group">
-          <label>${game.i18n.localize('FitDRoller.Effect')}:</label>
+          <label>${game.i18n.localize('BitDRoller.Effect')}:</label>
           <select id="fx" name="fx">
-            <option value="limited">${game.i18n.localize('FitDRoller.EffectLimited')}</option>
-            <option value="standard">${game.i18n.localize('FitDRoller.EffectStandard')}</option>
-            <option value="great">${game.i18n.localize('FitDRoller.EffectGreat')}</option>
+            <option value="limited">${game.i18n.localize('BitDRoller.EffectLimited')}</option>
+            <option value="standard">${game.i18n.localize('BitDRoller.EffectStandard')}</option>
+            <option value="great">${game.i18n.localize('BitDRoller.EffectGreat')}</option>
           </select>
-          <script>$('#fx option[value="' + game.settings.get("foundryvtt-fitdroller", "defaultEffect") + '"]').prop("selected", "selected");</script>
+          <script>$('#fx option[value="' + game.settings.get("foundryvtt-bitdroller", "defaultEffect") + '"]').prop("selected", "selected");</script>
         </div>
       </form>
     `,
     buttons: {
       yes: {
         icon: "<i class='fas fa-check'></i>",
-        label: game.i18n.localize('FitDRoller.Roll'),
+        label: game.i18n.localize('BitDRoller.Roll'),
         callback: async (html) =>
         {
           const dice_amount = parseInt(html.find('[name="dice"]')[0].value);
           const position = html.find('[name="pos"]')[0].value;
           const effect = html.find('[name="fx"]')[0].value;
-          await this.FitDRoller("", dice_amount, position, effect);
+          await this.BitDRoller("", dice_amount, position, effect);
         }
       },
       no: {
         icon: "<i class='fas fa-times'></i>",
-        label: game.i18n.localize('FitDRoller.Close'),
+        label: game.i18n.localize('BitDRoller.Close'),
       },
     },
     default: "yes",
@@ -71,7 +71,7 @@ async FitDRollerPopup() {
  * @param {string} position position
  * @param {string} effect effect
  */
-async FitDRoller(attribute = "", dice_amount = 0, position = "risky", effect = "standard") {
+async BitDRoller(attribute = "", dice_amount = 0, position = "risky", effect = "standard") {
   let versionParts;
   if( game.version ) {
     versionParts = game.version.split( '.' );
@@ -128,38 +128,38 @@ async showChatRollMessage(r, zeromode, attribute = "", position = "", effect = "
   // Retrieve Roll status.
   let roll_status = "";
 
-  roll_status = this.getFitDActionRollStatus(rolls, zeromode);
-  let color = game.settings.get("foundryvtt-fitdroller", "backgroundColor");
+  roll_status = this.getBitDActionRollStatus(rolls, zeromode);
+  let color = game.settings.get("foundryvtt-bitdroller", "backgroundColor");
 
   let position_localize = '';
   switch (position)
   {
     case 'controlled':
-      position_localize = 'FitDRoller.PositionControlled';
+      position_localize = 'BitDRoller.PositionControlled';
       break;
     case 'desperate':
-      position_localize = 'FitDRoller.PositionDesperate';
+      position_localize = 'BitDRoller.PositionDesperate';
       break;
     case 'risky':
     default:
-      position_localize = 'FitDRoller.PositionRisky';
+      position_localize = 'BitDRoller.PositionRisky';
   }
 
   let effect_localize = '';
   switch (effect)
   {
     case 'limited':
-      effect_localize = 'FitDRoller.EffectLimited';
+      effect_localize = 'BitDRoller.EffectLimited';
       break;
     case 'great':
-      effect_localize = 'FitDRoller.EffectGreat';
+      effect_localize = 'BitDRoller.EffectGreat';
       break;
     case 'standard':
     default:
-      effect_localize = 'FitDRoller.EffectStandard';
+      effect_localize = 'BitDRoller.EffectStandard';
   }
 
-  const result = await renderTemplate("modules/foundryvtt-fitdroller/templates/fitd-roll.html", { rolls, roll_status, attribute, position, position_localize, effect, effect_localize, zeromode, color });
+  const result = await renderTemplate("modules/foundryvtt-bitdroller/templates/bitd-roll.html", { rolls, roll_status, attribute, position, position_localize, effect, effect_localize, zeromode, color });
 
   const messageData = {
     speaker,
@@ -249,14 +249,14 @@ getFitDActionRollStatus(rolls, zeromode = false) {
 }
 
 Hooks.once("ready", () => {
-	game.fitdroller = new Roller();
+	game.bitdroller = new Roller();
 });
 
 // getSceneControlButtons
 Hooks.on("renderSceneControls", (app, html) => {
-  const dice_roller = $('<li class="scene-control" title="FitD Roller"><i class="fas fa-dice"></i></li>');
+  const dice_roller = $('<li class="scene-control" title="BitD Roller"><i class="fas fa-dice"></i></li>');
   dice_roller.on( "click", async function() {
-    await game.fitdroller.FitDRollerPopup();
+    await game.bitdroller.BitDRollerPopup();
   })
   if( isNewerVersion( game.version, '9.220' ) ) {
     html.children().first().append( dice_roller );
@@ -266,64 +266,64 @@ Hooks.on("renderSceneControls", (app, html) => {
 });
 
 Hooks.once("init", () => {
-  game.settings.register("foundryvtt-fitdroller", "backgroundColor", {
-    "name": game.i18n.localize("FitDRoller.backgroundColorName"),
-    "hint": game.i18n.localize("FitDRoller.backgroundColorHint"),
+  game.settings.register("foundryvtt-bitdroller", "backgroundColor", {
+    "name": game.i18n.localize("BitDRoller.backgroundColorName"),
+    "hint": game.i18n.localize("BitDRoller.backgroundColorHint"),
     "scope": "world",
     "config": true,
     "choices": {
-      "gray": game.i18n.localize("FitDRoller.backgroundColorGray"),
-      "black": game.i18n.localize("FitDRoller.backgroundColorBlack")
+      "gray": game.i18n.localize("BitDRoller.backgroundColorGray"),
+      "black": game.i18n.localize("BitDRoller.backgroundColorBlack")
     },
     "default": "gray",
     "type": String
   });
 
-  game.settings.register("foundryvtt-fitdroller", "maxDiceCount", {
-		"name": game.i18n.localize("FitDRoller.maxDiceCountName"),
-		"hint": game.i18n.localize("FitDRoller.maxDiceCountHint"),
+  game.settings.register("foundryvtt-bitdroller", "maxDiceCount", {
+		"name": game.i18n.localize("BitDRoller.maxDiceCountName"),
+		"hint": game.i18n.localize("BitDRoller.maxDiceCountHint"),
 		"scope": "world",
 		"config": true,
 		"default": 10,
 		"type": Number
 	});
 
-	game.settings.register("foundryvtt-fitdroller", "defaultDiceCount", {
-		"name": game.i18n.localize("FitDRoller.defaultDiceCountName"),
-		"hint": game.i18n.localize("FitDRoller.defaultDiceCountHint"),
+	game.settings.register("foundryvtt-bitdroller", "defaultDiceCount", {
+		"name": game.i18n.localize("BitDRoller.defaultDiceCountName"),
+		"hint": game.i18n.localize("BitDRoller.defaultDiceCountHint"),
 		"scope": "world",
 		"config": true,
 		"default": 2,
 		"type": Number
 	});
 
-  game.settings.register("foundryvtt-fitdroller", "defaultPosition", {
-		"name": game.i18n.localize("FitDRoller.defaultPositionName"),
-		"hint": game.i18n.localize("FitDRoller.defaultPositionHint"),
+  game.settings.register("foundryvtt-bitdroller", "defaultPosition", {
+		"name": game.i18n.localize("BitDRoller.defaultPositionName"),
+		"hint": game.i18n.localize("BitDRoller.defaultPositionHint"),
 		"scope": "world",
 		"config": true,
 		"type": String,
 		"choices": {
-			"controlled": game.i18n.localize("FitDRoller.PositionControlled"),
-			"risky": game.i18n.localize("FitDRoller.PositionRisky"),
-			"desperate": game.i18n.localize("FitDRoller.PositionDesperate")
+			"controlled": game.i18n.localize("BitDRoller.PositionControlled"),
+			"risky": game.i18n.localize("BitDRoller.PositionRisky"),
+			"desperate": game.i18n.localize("BitDRoller.PositionDesperate")
 		},
 		"default": "risky"
 	});
 
-	game.settings.register("foundryvtt-fitdroller", "defaultEffect", {
-		"name": game.i18n.localize("FitDRoller.defaultEffectName"),
-		"hint": game.i18n.localize("FitDRoller.defaultEffectHint"),
+	game.settings.register("foundryvtt-bitdroller", "defaultEffect", {
+		"name": game.i18n.localize("BitDRoller.defaultEffectName"),
+		"hint": game.i18n.localize("BitDRoller.defaultEffectHint"),
 		"scope": "world",
 		"config": true,
 		"type": String,
 		"choices": {
-			"great": game.i18n.localize("FitDRoller.EffectGreat"),
-			"standard": game.i18n.localize("FitDRoller.EffectStandard"),
-			"limited": game.i18n.localize("FitDRoller.EffectLimited")
+			"great": game.i18n.localize("BitDRoller.EffectGreat"),
+			"standard": game.i18n.localize("BitDRoller.EffectStandard"),
+			"limited": game.i18n.localize("BitDRoller.EffectLimited")
 		},
 		"default": "standard"
 	});
 });
 
-console.log("FitDRoller | Forged in the Dark Dice Roller loaded");
+console.log("BitDRoller | Blades in the Dark Dice Roller loaded");
