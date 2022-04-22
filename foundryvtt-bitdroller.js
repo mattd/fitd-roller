@@ -67,10 +67,9 @@ async BitDRollerPopup() {
         label: game.i18n.localize('BitDRoller.Roll'),
         callback: async (html) =>
         {
-          console.log('THIS IS HTML', html);
-          window.DUDE = html;
           const dice_amount = parseInt(html.find('[name="dice"]')[0].value);
-          const attribute = html.find('[name="action"]')[0].text;
+          const attributeOptions = html.find('[name="action"]')[0];
+          const attribute = attributeOptions[attributeOptions.selectedIndex].text;
           const position = html.find('[name="pos"]')[0].value;
           const effect = html.find('[name="fx"]')[0].value;
           await this.BitDRoller(attribute, dice_amount, position, effect);
