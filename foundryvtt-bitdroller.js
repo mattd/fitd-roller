@@ -26,18 +26,18 @@ async BitDRollerPopup() {
           <label>${game.i18n.localize('BitDRoller.Action')}:</label>
           <select id="action" name="action">
             <option value=""></option>
-            <option value="hunt">${game.il8n.localize('BitDRoller.ActionHunt')}</option>
-            <option value="study">${game.il8n.localize('BitDRoller.ActionStudy')}</option>
-            <option value="survey">${game.il8n.localize('BitDRoller.ActionSurvey')}</option>
-            <option value="tinker">${game.il8n.localize('BitDRoller.ActionTinker')}</option>
-            <option value="finesse">${game.il8n.localize('BitDRoller.ActionFinesse')}</option>
-            <option value="prowl">${game.il8n.localize('BitDRoller.ActionProwl')}</option>
-            <option value="skirmish">${game.il8n.localize('BitDRoller.ActionSkirmish')}</option>
-            <option value="wreck">${game.il8n.localize('BitDRoller.ActionWreck')}</option>
-            <option value="attune">${game.il8n.localize('BitDRoller.ActionAttune')}</option>
-            <option value="command">${game.il8n.localize('BitDRoller.ActionCommand')}</option>
-            <option value="consort">${game.il8n.localize('BitDRoller.ActionConsort')}</option>
-            <option value="sway">${game.il8n.localize('BitDRoller.ActionSway')}</option>
+            <option value="hunt">${game.i18n.localize('BitDRoller.ActionHunt')}</option>
+            <option value="study">${game.i18n.localize('BitDRoller.ActionStudy')}</option>
+            <option value="survey">${game.i18n.localize('BitDRoller.ActionSurvey')}</option>
+            <option value="tinker">${game.i18n.localize('BitDRoller.ActionTinker')}</option>
+            <option value="finesse">${game.i18n.localize('BitDRoller.ActionFinesse')}</option>
+            <option value="prowl">${game.i18n.localize('BitDRoller.ActionProwl')}</option>
+            <option value="skirmish">${game.i18n.localize('BitDRoller.ActionSkirmish')}</option>
+            <option value="wreck">${game.i18n.localize('BitDRoller.ActionWreck')}</option>
+            <option value="attune">${game.i18n.localize('BitDRoller.ActionAttune')}</option>
+            <option value="command">${game.i18n.localize('BitDRoller.ActionCommand')}</option>
+            <option value="consort">${game.i18n.localize('BitDRoller.ActionConsort')}</option>
+            <option value="sway">${game.i18n.localize('BitDRoller.ActionSway')}</option>
           </select>
           <script>$('#dice option[value="' + game.settings.get("foundryvtt-bitdroller", "defaultDiceCount") + '"]').prop("selected", "selected");</script>
         </div>
