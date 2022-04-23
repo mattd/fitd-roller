@@ -29,7 +29,7 @@ class Roller {
             <select id="dice" name="dice">
               ${
                 Array(maxDice + 1).fill().map((item, i) => {
-                  `<option value="${i}">${i}d</option>`
+                  return `<option value="${i}">${i}d</option>`
                 }).join('')
               }
             </select>
@@ -382,7 +382,7 @@ Hooks.once("init", () => {
     "default": 10,
     "type": Number
   });
-    // 
+
   game.settings.register("foundryvtt-bitdroller", "defaultDiceCount", {
     "name": game.i18n.localize("BitDRoller.defaultDiceCountName"),
     "hint": game.i18n.localize("BitDRoller.defaultDiceCountHint"),
