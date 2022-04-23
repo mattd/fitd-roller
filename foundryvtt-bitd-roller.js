@@ -330,7 +330,7 @@ class Roller {
 }
 
 Hooks.once("ready", () => {
-  game.bitd-roller = new Roller();
+  game.bitdRoller = new Roller();
 });
 
 // getSceneControlButtons
@@ -341,7 +341,7 @@ Hooks.on("renderSceneControls", (app, html) => {
     </li>
   `);
   diceRoller.on("click", async function () {
-    await game.bitd-roller.BitDRollerPopup();
+    await game.bitdRoller.BitDRollerPopup();
   });
   if (isNewerVersion(game.version, '9.220')) {
     html.children().first().append(diceRoller);
