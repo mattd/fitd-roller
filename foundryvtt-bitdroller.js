@@ -11,10 +11,10 @@ class Roller {
     );
     const defaultDice = defaultDiceCount + 1;
     const defaultPosition = (
-      game.settings.get("foundryvtt-bitdroller", "defaultPosition") + 1
+      game.settings.get("foundryvtt-bitdroller", "defaultPosition")
     );
     const defaultEffect = (
-      game.settings.get("foundryvtt-bitdroller", "defaultEffect") + 1
+      game.settings.get("foundryvtt-bitdroller", "defaultEffect")
     );
 
     new Dialog({
@@ -81,7 +81,7 @@ class Roller {
               </option>
             </select>
             <script>
-              $('#dice option[value="' + ${defaultDiceCount} + '"]').prop(
+              $('#dice option[value="${defaultDiceCount}"]').prop(
                 "selected", "selected
               );
             </script>
@@ -99,7 +99,7 @@ class Roller {
                 ${game.i18n.localize('BitDRoller.PositionDesperate')}
               </option>
             </select>
-            <script>$('#pos option[value="' + ${defaultPosition} + '"]').prop(
+            <script>$('#pos option[value="${defaultPosition}"]').prop(
                 "selected", "selected"
               );
             </script>
@@ -118,7 +118,7 @@ class Roller {
               </option>
             </select>
             <script>
-              $('#fx option[value="' + ${defaultEffect} + '"]').prop(
+              $('#fx option[value="${defaultEffect}"]').prop(
                 "selected", "selected"
               );
             </script>
