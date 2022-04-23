@@ -15,6 +15,20 @@ class Roller {
     const defaultEffect = game.settings.get(
       "foundryvtt-bitd-roller", "defaultEffect"
     );
+    const actions = [
+      'Hunt',
+      'Study',
+      'Survey',
+      'Tinker',
+      'Finesse',
+      'Prowl',
+      'Skirmish',
+      'Wreck',
+      'Attune',
+      'Command',
+      'Consort',
+      'Sway'
+    ];
 
     new Dialog({
       title: `${game.i18n.localize('BitDRoller.RollTitle')}`,
@@ -42,42 +56,14 @@ class Roller {
             <label>${game.i18n.localize('BitDRoller.Action')}:</label>
             <select id="action" name="action">
               <option value=""></option>
-              <option value="hunt">
-                ${game.i18n.localize('BitDRoller.ActionHunt')}
-              </option>
-              <option value="study">
-                ${game.i18n.localize('BitDRoller.ActionStudy')}
-              </option>
-              <option value="survey">
-                ${game.i18n.localize('BitDRoller.ActionSurvey')}
-              </option>
-              <option value="tinker">
-                ${game.i18n.localize('BitDRoller.ActionTinker')}
-              </option>
-              <option value="finesse">
-                ${game.i18n.localize('BitDRoller.ActionFinesse')}
-              </option>
-              <option value="prowl">
-                ${game.i18n.localize('BitDRoller.ActionProwl')}
-              </option>
-              <option value="skirmish">
-                ${game.i18n.localize('BitDRoller.ActionSkirmish')}
-              </option>
-              <option value="wreck">
-                ${game.i18n.localize('BitDRoller.ActionWreck')}
-              </option>
-              <option value="attune">
-                ${game.i18n.localize('BitDRoller.ActionAttune')}
-              </option>
-              <option value="command">
-                ${game.i18n.localize('BitDRoller.ActionCommand')}
-              </option>
-              <option value="consort">
-                ${game.i18n.localize('BitDRoller.ActionConsort')}
-              </option>
-              <option value="sway">
-                ${game.i18n.localize('BitDRoller.ActionSway')}
-              </option>
+              ${
+                actions.map(item => {
+                  return `
+                    <option value="${item}">
+                      ${game.i18n.localize('BitDRoller.Action' + item)}
+                    </option>`
+                }).join('')
+              }
             </select>
           </div>
           <div class="form-group">
@@ -125,8 +111,7 @@ class Roller {
           label: game.i18n.localize('BitDRoller.Roll'),
           callback: async (html) => {
             const diceAmount = parseInt(html.find('[name="dice"]')[0].value);
-            const actionOptions = html.find('[name="action"]')[0];
-            const action = actionOptions[actionOptions.selectedIndex].text;
+            const action = html.find('[name="action"]')[0].value;
             const position = html.find('[name="pos"]')[0].value;
             const effect = html.find('[name="fx"]')[0].value;
             await this.BitDRoller(action, diceAmount, position, effect);
