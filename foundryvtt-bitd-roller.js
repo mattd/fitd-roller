@@ -5,15 +5,15 @@ class Roller {
   */
   async BitDRollerPopup() {
 
-    const maxDice = game.settings.get("foundryvtt-bitdroller", "maxDiceCount");
+    const maxDice = game.settings.get("foundryvtt-bitd-roller", "maxDiceCount");
     const defaultDiceCount = (
-      game.settings.get("foundryvtt-bitdroller", "defaultDiceCount")
+      game.settings.get("foundryvtt-bitd-roller", "defaultDiceCount")
     );
     const defaultPosition = (
-      game.settings.get("foundryvtt-bitdroller", "defaultPosition")
+      game.settings.get("foundryvtt-bitd-roller", "defaultPosition")
     );
     const defaultEffect = (
-      game.settings.get("foundryvtt-bitdroller", "defaultEffect")
+      game.settings.get("foundryvtt-bitd-roller", "defaultEffect")
     );
 
     new Dialog({
@@ -217,7 +217,7 @@ class Roller {
     let rollStatus = "";
 
     rollStatus = this.getBitDActionRollStatus(rolls, zeromode);
-    let color = game.settings.get("foundryvtt-bitdroller", "backgroundColor");
+    let color = game.settings.get("foundryvtt-bitd-roller", "backgroundColor");
 
     let positionLocalize = '';
     switch (position)
@@ -248,7 +248,7 @@ class Roller {
     }
 
     const result = await renderTemplate(
-      "modules/foundryvtt-bitdroller/templates/bitd-roll.html",
+      "modules/foundryvtt-bitd-roller/templates/bitd-roll.html",
       {
         rolls,
         rollStatus,
@@ -330,7 +330,7 @@ class Roller {
 }
 
 Hooks.once("ready", () => {
-  game.bitdroller = new Roller();
+  game.bitd-roller = new Roller();
 });
 
 // getSceneControlButtons
@@ -341,7 +341,7 @@ Hooks.on("renderSceneControls", (app, html) => {
     </li>
   `);
   diceRoller.on("click", async function () {
-    await game.bitdroller.BitDRollerPopup();
+    await game.bitd-roller.BitDRollerPopup();
   });
   if (isNewerVersion(game.version, '9.220')) {
     html.children().first().append(diceRoller);
@@ -351,7 +351,7 @@ Hooks.on("renderSceneControls", (app, html) => {
 });
 
 Hooks.once("init", () => {
-  game.settings.register("foundryvtt-bitdroller", "backgroundColor", {
+  game.settings.register("foundryvtt-bitd-roller", "backgroundColor", {
     "name": game.i18n.localize("BitDRoller.backgroundColorName"),
     "hint": game.i18n.localize("BitDRoller.backgroundColorHint"),
     "scope": "world",
@@ -364,7 +364,7 @@ Hooks.once("init", () => {
     "type": String
   });
 
-  game.settings.register("foundryvtt-bitdroller", "maxDiceCount", {
+  game.settings.register("foundryvtt-bitd-roller", "maxDiceCount", {
     "name": game.i18n.localize("BitDRoller.maxDiceCountName"),
     "hint": game.i18n.localize("BitDRoller.maxDiceCountHint"),
     "scope": "world",
@@ -373,7 +373,7 @@ Hooks.once("init", () => {
     "type": Number
   });
 
-  game.settings.register("foundryvtt-bitdroller", "defaultDiceCount", {
+  game.settings.register("foundryvtt-bitd-roller", "defaultDiceCount", {
     "name": game.i18n.localize("BitDRoller.defaultDiceCountName"),
     "hint": game.i18n.localize("BitDRoller.defaultDiceCountHint"),
     "scope": "world",
@@ -382,7 +382,7 @@ Hooks.once("init", () => {
     "type": Number
   });
 
-  game.settings.register("foundryvtt-bitdroller", "defaultPosition", {
+  game.settings.register("foundryvtt-bitd-roller", "defaultPosition", {
     "name": game.i18n.localize("BitDRoller.defaultPositionName"),
     "hint": game.i18n.localize("BitDRoller.defaultPositionHint"),
     "scope": "world",
@@ -396,7 +396,7 @@ Hooks.once("init", () => {
     "default": "risky"
   });
 
-  game.settings.register("foundryvtt-bitdroller", "defaultEffect", {
+  game.settings.register("foundryvtt-bitd-roller", "defaultEffect", {
     "name": game.i18n.localize("BitDRoller.defaultEffectName"),
     "hint": game.i18n.localize("BitDRoller.defaultEffectHint"),
     "scope": "world",

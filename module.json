@@ -1,7 +1,7 @@
 {
-  "name": "foundryvtt-bitdroller",
+  "name": "foundryvtt-bitd-roller",
   "title": "Blades in the Dark Roller",
-  "description": "Provides a generic Dice Roller for Blades in the Dark games",
+  "description": "Provides a Dice Roller for Blades in the Dark games",
   "authors": [
     {
       "name": "megastruktur"
@@ -15,12 +15,12 @@
       "discord": "matthewtdawson#9654"
     }
   ],
-  "version": "1.6.17",
+  "version": "1.7.0",
   "minimumCoreVersion": "0.7.5",
   "compatibleCoreVersion": "9",
 
-  "styles": ["foundryvtt-bitdroller.css"],
-  "esmodules": ["foundryvtt-bitdroller.js"],
+  "styles": ["foundryvtt-bitd-roller.css"],
+  "esmodules": ["foundryvtt-bitd-roller.js"],
 
   "languages": [
     {
@@ -34,8 +34,8 @@
       "path": "lang/es.json"
     }
   ],
-  "url": "https://github.com/mattd/foundryvtt-bitdroller",
-  "manifest": "https://raw.githubusercontent.com/mattd/foundryvtt-bitdroller/main/module.json",
-  "download": "https://github.com/mattd/foundryvtt-bitdroller/archive/refs/tags/v1.6.17.zip",
-  "bugs": "https://github.com/mattd/foundryvtt-bitdroller/issues"
+  "url": "https://github.com/mattd/foundryvtt-bitd-roller",
+  "manifest": "https://raw.githubusercontent.com/mattd/foundryvtt-bitd-roller/main/module.json",
+  "download": "https://github.com/mattd/foundryvtt-bit-droller/archive/refs/tags/v1.7.0.zip",
+  "bugs": "https://github.com/mattd/foundryvtt-bitd-roller/issues"
 }

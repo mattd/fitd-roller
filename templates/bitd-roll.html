@@ -3,7 +3,7 @@
     <div class="chat-label label-stripe-chat">{{attribute}}</div>
   {{/if}}
 
-	<div class="chat-label-small label-stripe-chat-small">
+  <div class="chat-label-small label-stripe-chat-small">
     {{{localize positionLocalize}}} | {{{localize effectLocalize}}}
   </div>
 
@@ -19,9 +19,9 @@
     </div>
     <div class="description">
       <p>{{{localize "BitDRoller.RollDoWithIncreasedEffect"}}}</p>
-	    {{#if (eq position "desperate")}}
-	      <p>{{{localize "BitDRoller.RollXP"}}}</p>
-	    {{/if}}
+      {{#if (eq position "desperate")}}
+        <p>{{{localize "BitDRoller.RollXP"}}}</p>
+      {{/if}}
     </div>
   {{/if}}
 
@@ -31,7 +31,7 @@
       <p>{{{localize "BitDRoller.RollDo"}}}</p>
       {{#if (eq position "desperate")}}
         <p>{{{localize "BitDRoller.RollXP"}}}</p>
-	    {{/if}}
+      {{/if}}
     </div>
   {{/if}}
 
@@ -49,7 +49,7 @@
           {{{localize "BitDRoller.RollPartialSuccessPosition"}}}
         {{/if}}
       </p>
-	    {{#if (eq position "desperate")}}
+      {{#if (eq position "desperate")}}
         <p>{{{localize "BitDRoller.RollXP"}}}</p>
       {{/if}}
     </div>
