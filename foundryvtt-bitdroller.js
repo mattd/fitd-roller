@@ -124,12 +124,12 @@ class Roller {
           icon: "<i class='fas fa-check'></i>",
           label: game.i18n.localize('BitDRoller.Roll'),
           callback: async (html) => {
-            const dice_amount = parseInt(html.find('[name="dice"]')[0].value);
+            const diceAmount = parseInt(html.find('[name="dice"]')[0].value);
             const actionOptions = html.find('[name="action"]')[0];
             const action = actionOptions[actionOptions.selectedIndex].text;
             const position = html.find('[name="pos"]')[0].value;
             const effect = html.find('[name="fx"]')[0].value;
-            await this.BitDRoller(action, dice_amount, position, effect);
+            await this.BitDRoller(action, diceAmount, position, effect);
           }
         },
         no: {
@@ -144,13 +144,13 @@ class Roller {
   /**
    * Roll Dice.
    * @param {string} attribute arbitrary label for the roll
-   * @param {int} dice_amount number of dice to roll
+   * @param {int} diceAmount number of dice to roll
    * @param {string} position position
    * @param {string} effect effect
    */
   async BitDRoller(
     attribute = "",
-    dice_amount = 0,
+    diceAmount = 0,
     position = "risky",
     effect = "standard"
   ) {
@@ -166,10 +166,10 @@ class Roller {
     }
 
     let zeromode = false;
-    if (dice_amount < 0) { dice_amount = 0; }
-    if (dice_amount === 0) { zeromode = true; dice_amount = 2; }
+    if (diceAmount < 0) { diceAmount = 0; }
+    if (diceAmount === 0) { zeromode = true; diceAmount = 2; }
 
-    const r = new Roll(`${dice_amount}d6`, {});
+    const r = new Roll(`${diceAmount}d6`, {});
 
     if (game.majorVersion > 7) {
       await r.evaluate({async: true});
@@ -199,13 +199,13 @@ class Roller {
   ) {
     let versionParts;
     if (game.version) {
-      versionParts = game.version.split( '.' );
-      game.majorVersion = parseInt( versionParts[0] );
-      game.minorVersion = parseInt( versionParts[1] );
+      versionParts = game.version.split('.');
+      game.majorVersion = parseInt(versionParts[0]);
+      game.minorVersion = parseInt(versionParts[1]);
     } else {
-      versionParts = game.data.version.split( '.' );
-      game.majorVersion = parseInt( versionParts[1] );
-      game.minorVersion = parseInt( versionParts[2] );
+      versionParts = game.data.version.split('.');
+      game.majorVersion = parseInt(versionParts[1]);
+      game.minorVersion = parseInt(versionParts[2]);
     }
 
     const speaker = ChatMessage.getSpeaker();
@@ -214,49 +214,49 @@ class Roller {
     rolls = (r.terms)[0].results;
 
     // Retrieve Roll status.
-    let roll_status = "";
+    let rollStatus = "";
 
-    roll_status = this.getBitDActionRollStatus(rolls, zeromode);
+    rollStatus = this.getBitDActionRollStatus(rolls, zeromode);
     let color = game.settings.get("foundryvtt-bitdroller", "backgroundColor");
 
-    let position_localize = '';
+    let positionLocalize = '';
     switch (position)
     {
       case 'controlled':
-        position_localize = 'BitDRoller.PositionControlled';
+        positionLocalize = 'BitDRoller.PositionControlled';
         break;
       case 'desperate':
-        position_localize = 'BitDRoller.PositionDesperate';
+        positionLocalize = 'BitDRoller.PositionDesperate';
         break;
       case 'risky':
       default:
-        position_localize = 'BitDRoller.PositionRisky';
+        positionLocalize = 'BitDRoller.PositionRisky';
     }
 
-    let effect_localize = '';
+    let effectLocalize = '';
     switch (effect)
     {
       case 'limited':
-        effect_localize = 'BitDRoller.EffectLimited';
+        effectLocalize = 'BitDRoller.EffectLimited';
         break;
       case 'great':
-        effect_localize = 'BitDRoller.EffectGreat';
+        effectLocalize = 'BitDRoller.EffectGreat';
         break;
       case 'standard':
       default:
-        effect_localize = 'BitDRoller.EffectStandard';
+        effectLocalize = 'BitDRoller.EffectStandard';
     }
 
     const result = await renderTemplate(
       "modules/foundryvtt-bitdroller/templates/bitd-roll.html",
       {
         rolls,
-        roll_status,
+        rollStatus,
         attribute,
         position,
-        position_localize,
+        positionLocalize,
         effect,
-        effect_localize,
+        effectLocalize,
         zeromode,
         color
       }
@@ -287,45 +287,45 @@ class Roller {
    * @returns {string} success/failure status of roll
    */
   getBitDActionRollStatus(rolls, zeromode = false) {
-    let sorted_rolls = [];
+    let sortedRolls = [];
     // Sort roll values from lowest to highest.
-    sorted_rolls = rolls.map((i) => i.result).sort();
+    sortedRolls = rolls.map((i) => i.result).sort();
 
-    let roll_status = "failure";
+    let rollStatus = "failure";
 
-    if (sorted_rolls[0] === 6 && zeromode) {
-      roll_status = "critical-success";
+    if (sortedRolls[0] === 6 && zeromode) {
+      rollStatus = "critical-success";
     } else {
-      let use_die;
-      let prev_use_die = false;
+      let useDie;
+      let prevUseDie = false;
 
       if (zeromode) {
-        use_die = sorted_rolls[0];
+        useDie = sortedRolls[0];
       } else {
-        use_die = sorted_rolls[sorted_rolls.length - 1];
+        useDie = sortedRolls[sortedRolls.length - 1];
 
-        if (sorted_rolls.length - 2 >= 0) {
-          prev_use_die = sorted_rolls[sorted_rolls.length - 2];
+        if (sortedRolls.length - 2 >= 0) {
+          prevUseDie = sortedRolls[sortedRolls.length - 2];
         }
       }
 
-      // 1,2,3 = failure
-      if (use_die <= 3) {
-        roll_status = "failure";
-      } else if (use_die === 6) {
-        if (prev_use_die && prev_use_die === 6) {
+      if (useDie <= 3) {
+         // 1,2,3 = failure
+        rollStatus = "failure";
+      } else if (useDie === 6) {
+        if (prevUseDie && prevUseDie === 6) {
           // 6,6 - critical success
-          roll_status = "critical-success";
+          rollStatus = "critical-success";
         } else {
           // 6 - success
-          roll_status = "success";
+          rollStatus = "success";
         }
       } else {
         // else (4,5) = partial success
-        roll_status = "partial-success";
+        rollStatus = "partial-success";
       }
     }
-    return roll_status;
+    return rollStatus;
   }
 }
 
@@ -335,18 +335,18 @@ Hooks.once("ready", () => {
 
 // getSceneControlButtons
 Hooks.on("renderSceneControls", (app, html) => {
-  const dice_roller = $(`
+  const diceRoller = $(`
     <li class="scene-control" title="BitD Roller">
       <i class="fas fa-dice"></i>
     </li>
   `);
-  dice_roller.on("click", async function () {
+  diceRoller.on("click", async function () {
     await game.bitdroller.BitDRollerPopup();
   });
   if (isNewerVersion(game.version, '9.220')) {
-    html.children().first().append(dice_roller);
+    html.children().first().append(diceRoller);
   } else {
-    html.append( dice_roller );
+    html.append(diceRoller);
   }
 });
 
