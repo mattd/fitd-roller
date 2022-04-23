@@ -287,7 +287,6 @@ class Roller {
    * @returns {string} success/failure status of roll
    */
   getBitDActionRollStatus(rolls, zeromode = false) {
-
     let sorted_rolls = [];
     // Sort roll values from lowest to highest.
     sorted_rolls = rolls.map((i) => i.result).sort();
@@ -313,14 +312,12 @@ class Roller {
       // 1,2,3 = failure
       if (use_die <= 3) {
         roll_status = "failure";
-      }
-
-      // if 6 - check the prev highest one.
-      if (use_die === 6) {
-        // 6,6 - critical success
+      } else if (use_die === 6) {
         if (prev_use_die && prev_use_die === 6) {
+          // 6,6 - critical success
           roll_status = "critical-success";
         } else {
+          // 6 - success
           roll_status = "success";
         }
       } else {
@@ -328,7 +325,6 @@ class Roller {
         roll_status = "partial-success";
       }
     }
-
     return roll_status;
   }
 }
