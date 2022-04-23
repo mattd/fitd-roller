@@ -9,7 +9,6 @@ class Roller {
     const defaultDiceCount = (
       game.settings.get("foundryvtt-bitdroller", "defaultDiceCount")
     );
-    const defaultDice = defaultDiceCount + 1;
     const defaultPosition = (
       game.settings.get("foundryvtt-bitdroller", "defaultPosition")
     );
@@ -34,7 +33,7 @@ class Roller {
               }
             </select>
             <script>
-              $('#dice option[value="' + ${defaultDiceCount} + '"]').prop(
+              $('#dice option[value="${defaultDiceCount}"]').prop(
                 "selected", "selected"
               );
             </script>
@@ -80,11 +79,6 @@ class Roller {
                 ${game.i18n.localize('BitDRoller.ActionSway')}
               </option>
             </select>
-            <script>
-              $('#dice option[value="${defaultDiceCount}"]').prop(
-                "selected", "selected
-              );
-            </script>
           </div>
           <div class="form-group">
             <label>${game.i18n.localize('BitDRoller.Position')}:</label>
