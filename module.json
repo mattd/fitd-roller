@@ -15,7 +15,7 @@
       "discord": "matthewtdawson#9654"
     }
   ],
-  "version": "1.6.10",
+  "version": "1.6.11",
   "minimumCoreVersion": "0.7.5",
   "compatibleCoreVersion": "9",
 
@@ -36,6 +36,6 @@
   ],
   "url": "https://github.com/mattd/foundryvtt-bitdroller",
   "manifest": "https://raw.githubusercontent.com/mattd/foundryvtt-bitdroller/main/module.json",
-  "download": "https://github.com/mattd/foundryvtt-bitdroller/archive/refs/tags/v1.6.10.zip",
+  "download": "https://github.com/mattd/foundryvtt-bitdroller/archive/refs/tags/v1.6.11.zip",
   "bugs": "https://github.com/mattd/foundryvtt-bitdroller/issues"
 }
