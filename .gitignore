@@ -1,5 +1,6 @@
 # OS cruft
 .DS_Store
 
-# Emacs config
+# Contributor config
+.screenrc
 .dir-locals.el
