@@ -6,14 +6,14 @@ class Roller {
   async BitDRollerPopup() {
 
     const maxDice = game.settings.get("foundryvtt-bitd-roller", "maxDiceCount");
-    const defaultDiceCount = (
-      game.settings.get("foundryvtt-bitd-roller", "defaultDiceCount")
+    const defaultDiceCount = game.settings.get(
+      "foundryvtt-bitd-roller", "defaultDiceCount"
     );
-    const defaultPosition = (
-      game.settings.get("foundryvtt-bitd-roller", "defaultPosition")
+    const defaultPosition = game.settings.get(
+      "foundryvtt-bitd-roller", "defaultPosition"
     );
-    const defaultEffect = (
-      game.settings.get("foundryvtt-bitd-roller", "defaultEffect")
+    const defaultEffect = game.settings.get(
+      "foundryvtt-bitd-roller", "defaultEffect"
     );
 
     new Dialog({
