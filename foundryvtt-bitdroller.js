@@ -11,10 +11,10 @@ class Roller {
     );
     const defaultDice = defaultDiceCount + 1;
     const defaultPosition = (
-      game.settings.get("foundryvtt-bitdroller", "defaultPosition")
+      game.settings.get("foundryvtt-bitdroller", "defaultPosition") + 1
     );
     const defaultEffect = (
-      game.settings.get("foundryvtt-bitdroller", "defaultEffect")
+      game.settings.get("foundryvtt-bitdroller", "defaultEffect") + 1
     );
 
     new Dialog({
