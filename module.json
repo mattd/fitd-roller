@@ -15,7 +15,7 @@
       "discord": "matthewtdawson#9654"
     }
   ],
-  "version": "1.8.0",
+  "version": "1.8.1",
   "minimumCoreVersion": "0.7.5",
   "compatibleCoreVersion": "9",
 
@@ -36,6 +36,6 @@
   ],
   "url": "https://github.com/mattd/fitd-roller",
   "manifest": "https://raw.githubusercontent.com/mattd/fitd-roller/main/module.json",
-  "download": "https://github.com/mattd/fitd-roller/archive/refs/tags/v1.8.0.zip",
+  "download": "https://github.com/mattd/fitd-roller/archive/refs/tags/v1.8.1.zip",
   "bugs": "https://github.com/mattd/fitd-roller/issues"
 }
