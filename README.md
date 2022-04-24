@@ -16,7 +16,7 @@ There are module settings for controlling:
 
 Alternatively, you can set up macros and skip the popup UI altogether. (Thanks to Thune#3566 for this idea and the idea for the entire module!)
 
-`game.bitdroller.BitDRoller("attribute", dice, "position", "effect")`
+`game.fitdRoller.roll("attribute", dice, "position", "effect")`
 
 * `attribute`: any string of your choosing (defaults to "")
 * `dice`: total number of dice to roll (defaults to 0)
