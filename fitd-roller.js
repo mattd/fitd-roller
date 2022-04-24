@@ -1,17 +1,20 @@
 class FitDRoller {
   /**
-  * Get Foundry major and minor versions
+  * Gets Foundry major and minor versions.
   * @return {{major: number, minor: number}} version object
   */
   getFoundryVersion () {
     let versionParts;
 
     if (game.version) {
-        versionParts = game.version.split('.');
-    } else {
-        versionParts = game.data.version.split('.');
+      versionParts = game.version.split('.');
+      return {
+        major: parseInt(versionParts[0]),
+        minor: parseInt(versionParts[1])
+      };
     }
 
+    versionParts = game.data.version.split('.');
     return {
       major: parseInt(versionParts[1]),
       minor: parseInt(versionParts[2])
@@ -19,10 +22,10 @@ class FitDRoller {
   }
 
   /**
-  * Create popup for roller
+  * Creates and shows the roller popup.
   * @return none
   */
-  async showPopup() {
+  async showRoller() {
     const maxDice = game.settings.get("fitd-roller", "maxDiceCount");
     const defaultDiceCount = game.settings.get(
       "fitd-roller", "defaultDiceCount"
@@ -127,7 +130,7 @@ class FitDRoller {
   }
 
   /**
-   * Roll Dice.
+   * Rolls the Dice.
    * @param {string} attribute arbitrary label for the roll
    * @param {int} diceAmount number of dice to roll
    * @param {string} position position
@@ -156,7 +159,7 @@ class FitDRoller {
   }
 
   /**
-   * Shows Chat message.
+   * Shows Chat message for a roll.
    *
    * @param {Roll} r array of rolls
    * @param {Boolean} zeromode whether to treat as if 0d
@@ -240,7 +243,7 @@ class FitDRoller {
   }
 
   /**
-   *  Get status of the Roll.
+   *  Gets status of the Roll.
    *  - failure
    *  - partial-success
    *  - success
@@ -296,7 +299,6 @@ Hooks.once("ready", () => {
   game.fitdRoller = new FitDRoller();
 });
 
-// getSceneControlButtons
 Hooks.on("renderSceneControls", (app, html) => {
   const diceRoller = $(`
     <li class="scene-control" title="FitD Roller">
@@ -304,7 +306,7 @@ Hooks.on("renderSceneControls", (app, html) => {
     </li>
   `);
   diceRoller.on("click", async function () {
-    await game.fitdRoller.showPopup();
+    await game.fitdRoller.showRoller();
   });
   if (isNewerVersion(game.version, '9.220')) {
     html.children().first().append(diceRoller);
