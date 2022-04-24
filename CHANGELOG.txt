@@ -21,3 +21,5 @@
 1.6.0  Fork from Forged in the Dark roller
 
 1.7.0  Rename module, add BitD actions
+
+1.8.0  Reverted module rename, genericized action definition

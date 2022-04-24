@@ -1,6 +1,6 @@
-# Blades in the Dark Roller
+# Forged in the Dark Roller for FoundryVTT
 
-A dice roller for Blades in the Dark games in FoundryVTT, based on code by Megastruktur.
+A generic dice roller for Forged in the Dark games played on FoundryVTT. Based on code by Megastruktur.
 
 ## Usage
 
@@ -9,6 +9,7 @@ This module adds a roll icon at the bottom of the taskbar. Pick your dice pool, 
 There are module settings for controlling:
 
 * the max number of dice
+* the actions used in your system
 * the default number of dice initially selected
 * the default position initially selected
 * the default effect initially selected
