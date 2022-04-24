@@ -142,9 +142,9 @@ class FitDRoller {
     position = "risky",
     effect = "standard"
   ) {
-    let zeromode = false;
+    let zeroMode = false;
     if (diceAmount < 0) { diceAmount = 0; }
-    if (diceAmount === 0) { zeromode = true; diceAmount = 2; }
+    if (diceAmount === 0) { zeroMode = true; diceAmount = 2; }
 
     const r = new Roll(`${diceAmount}d6`, {});
 
@@ -154,7 +154,7 @@ class FitDRoller {
       r.roll();
     }
     return await this.showChatRollMessage(
-      r, zeromode, attribute, position, effect
+      r, zeroMode, attribute, position, effect
     );
   }
 
@@ -162,14 +162,14 @@ class FitDRoller {
    * Shows Chat message for a roll.
    *
    * @param {Roll} r array of rolls
-   * @param {Boolean} zeromode whether to treat as if 0d
+   * @param {Boolean} zeroMode whether to treat as if 0d
    * @param {string} attribute arbitrary label for the roll
    * @param {string} position position
    * @param {string} effect effect
    */
   async showChatRollMessage(
     r,
-    zeromode,
+    zeroMode,
     attribute = "",
     position = "",
     effect = ""
@@ -182,7 +182,7 @@ class FitDRoller {
     // Retrieve Roll outcome.
     let rollOutcome = "";
 
-    rollOutcome = this.getRollOutcome(rolls, zeromode);
+    rollOutcome = this.getRollOutcome(rolls, zeroMode);
     let color = game.settings.get("fitd-roller", "backgroundColor");
 
     let positionLocalize = '';
@@ -213,7 +213,7 @@ class FitDRoller {
         effectLocalize = 'FitDRoller.EffectStandard';
     }
 
-    const result = await renderTemplate(
+    const renderedTemplate = await renderTemplate(
       "modules/fitd-roller/templates/fitd-roll.html",
       {
         rolls,
@@ -223,22 +223,22 @@ class FitDRoller {
         positionLocalize,
         effect,
         effectLocalize,
-        zeromode,
+        zeroMode,
         color
       }
     );
 
-    const messageData = {
+    const message = {
       speaker,
-      content: result,
+      content: renderedTemplate,
       type: CONST.CHAT_MESSAGE_TYPES.ROLL,
       roll: r
     };
 
     if (this.getFoundryVersion().major > 7) {
-      return CONFIG.ChatMessage.documentClass.create(messageData, {});
+      return CONFIG.ChatMessage.documentClass.create(message, {});
     } else {
-      return CONFIG.ChatMessage.entityClass.create(messageData, {});
+      return CONFIG.ChatMessage.entityClass.create(message, {});
     }
   }
 
@@ -249,23 +249,23 @@ class FitDRoller {
    *  - success
    *  - critical-success
    * @param {Array} rolls results of dice rolls
-   * @param {Boolean} zeromode whether to treat as if 0d
+   * @param {Boolean} zeroMode whether to treat as if 0d
    * @returns {string} success/failure outcome of roll
    */
-  getRollOutcome(rolls, zeromode = false) {
+  getRollOutcome(rolls, zeroMode = false) {
     let sortedRolls = [];
     // Sort roll values from lowest to highest.
     sortedRolls = rolls.map((i) => i.result).sort();
 
     let rollOutcome = "failure";
 
-    if (sortedRolls[0] === 6 && zeromode) {
+    if (sortedRolls[0] === 6 && zeroMode) {
       rollOutcome = "critical-success";
     } else {
       let useDie;
       let prevUseDie = false;
 
-      if (zeromode) {
+      if (zeroMode) {
         useDie = sortedRolls[0];
       } else {
         useDie = sortedRolls[sortedRolls.length - 1];
@@ -304,7 +304,7 @@ Hooks.on("renderSceneControls", (app, html) => {
     <li class="scene-control" title="FitD Roller">
       <i class="fas fa-dice"></i>
     </li>
-  `);
+  `);]1
   diceRoller.on("click", async function () {
     await game.fitdRoller.showRoller();
   });
