@@ -1,29 +1,46 @@
 class Roller {
   /**
+  * Get Foundry major and minor versions
+  * @return {{major: number, minor: number}} version object
+  */
+  getFoundryVersion () {
+    let versionParts;
+
+    if (game.version) {
+        versionParts = game.version.split('.');
+    } else {
+        versionParts = game.data.version.split('.');
+    }
+
+    return {
+      major: parseInt(versionParts[1]),
+      minor: parseInt(versionParts[2])
+    };
+  }
+
+  /**
   * Create popup for roller
   * @return none
   */
-  async BitDRollerPopup() {
-
-    const maxDice = game.settings.get("foundryvtt-bitd-roller", "maxDiceCount");
-    const defaultDiceCount = (
-      game.settings.get("foundryvtt-bitd-roller", "defaultDiceCount")
+  async FitDRollerPopup() {
+    const maxDice = game.settings.get("fitd-roller", "maxDiceCount");
+    const defaultDiceCount = game.settings.get(
+      "fitd-roller", "defaultDiceCount"
     );
-    const defaultPosition = (
-      game.settings.get("foundryvtt-bitd-roller", "defaultPosition")
+    const actions = game.settings.get("fitd-roller", "actions");
+    const defaultPosition = game.settings.get(
+      "fitd-roller", "defaultPosition"
     );
-    const defaultEffect = (
-      game.settings.get("foundryvtt-bitd-roller", "defaultEffect")
-    );
+    const defaultEffect = game.settings.get("fitd-roller", "defaultEffect");
 
     new Dialog({
-      title: `${game.i18n.localize('BitDRoller.RollTitle')}`,
+      title: `${game.i18n.localize('FitDRoller.RollTitle')}`,
       content: `
-        <h2>${game.i18n.localize('BitDRoller.Roll')}</h2>
+        <h2>${game.i18n.localize('FitDRoller.Roll')}</h2>
         <form>
           <div class="form-group">
             <label>
-              ${game.i18n.localize('BitDRoller.RollNumberOfDice')}:
+              ${game.i18n.localize('FitDRoller.RollNumberOfDice')}:
             </label>
             <select id="dice" name="dice">
               ${
@@ -39,58 +56,27 @@ class Roller {
             </script>
           </div>
           <div class="form-group">
-            <label>${game.i18n.localize('BitDRoller.Action')}:</label>
+            <label>${game.i18n.localize('FitDRoller.Action')}:</label>
             <select id="action" name="action">
               <option value=""></option>
-              <option value="hunt">
-                ${game.i18n.localize('BitDRoller.ActionHunt')}
-              </option>
-              <option value="study">
-                ${game.i18n.localize('BitDRoller.ActionStudy')}
-              </option>
-              <option value="survey">
-                ${game.i18n.localize('BitDRoller.ActionSurvey')}
-              </option>
-              <option value="tinker">
-                ${game.i18n.localize('BitDRoller.ActionTinker')}
-              </option>
-              <option value="finesse">
-                ${game.i18n.localize('BitDRoller.ActionFinesse')}
-              </option>
-              <option value="prowl">
-                ${game.i18n.localize('BitDRoller.ActionProwl')}
-              </option>
-              <option value="skirmish">
-                ${game.i18n.localize('BitDRoller.ActionSkirmish')}
-              </option>
-              <option value="wreck">
-                ${game.i18n.localize('BitDRoller.ActionWreck')}
-              </option>
-              <option value="attune">
-                ${game.i18n.localize('BitDRoller.ActionAttune')}
-              </option>
-              <option value="command">
-                ${game.i18n.localize('BitDRoller.ActionCommand')}
-              </option>
-              <option value="consort">
-                ${game.i18n.localize('BitDRoller.ActionConsort')}
-              </option>
-              <option value="sway">
-                ${game.i18n.localize('BitDRoller.ActionSway')}
-              </option>
+              ${
+                actions.split(',').map(item => {
+                  return `<option value="${item}">${item}</option>`
+                })
+              }
             </select>
           </div>
           <div class="form-group">
-            <label>${game.i18n.localize('BitDRoller.Position')}:</label>
+            <label>${game.i18n.localize('FitDRoller.Position')}:</label>
             <select id="pos" name="pos">
               <option value="controlled">
-                ${game.i18n.localize('BitDRoller.PositionControlled')}
+                ${game.i18n.localize('FitDRoller.PositionControlled')}
               </option>
               <option value="risky">
-                ${game.i18n.localize('BitDRoller.PositionRisky')}
+                ${game.i18n.localize('FitDRoller.PositionRisky')}
               </option>
               <option value="desperate">
-                ${game.i18n.localize('BitDRoller.PositionDesperate')}
+                ${game.i18n.localize('FitDRoller.PositionDesperate')}
               </option>
             </select>
             <script>$('#pos option[value="${defaultPosition}"]').prop(
@@ -99,16 +85,16 @@ class Roller {
             </script>
           </div>
           <div class="form-group">
-            <label>${game.i18n.localize('BitDRoller.Effect')}:</label>
+            <label>${game.i18n.localize('FitDRoller.Effect')}:</label>
             <select id="fx" name="fx">
               <option value="limited">
-                ${game.i18n.localize('BitDRoller.EffectLimited')}
+                ${game.i18n.localize('FitDRoller.EffectLimited')}
               </option>
               <option value="standard">
-                ${game.i18n.localize('BitDRoller.EffectStandard')}
+                ${game.i18n.localize('FitDRoller.EffectStandard')}
               </option>
               <option value="great">
-                ${game.i18n.localize('BitDRoller.EffectGreat')}
+                ${game.i18n.localize('FitDRoller.EffectGreat')}
               </option>
             </select>
             <script>
@@ -122,19 +108,18 @@ class Roller {
       buttons: {
         yes: {
           icon: "<i class='fas fa-check'></i>",
-          label: game.i18n.localize('BitDRoller.Roll'),
+          label: game.i18n.localize('FitDRoller.Roll'),
           callback: async (html) => {
             const diceAmount = parseInt(html.find('[name="dice"]')[0].value);
-            const actionOptions = html.find('[name="action"]')[0];
-            const action = actionOptions[actionOptions.selectedIndex].text;
+            const action = html.find('[name="action"]')[0].value;
             const position = html.find('[name="pos"]')[0].value;
             const effect = html.find('[name="fx"]')[0].value;
-            await this.BitDRoller(action, diceAmount, position, effect);
+            await this.FitDRoller(action, diceAmount, position, effect);
           }
         },
         no: {
           icon: "<i class='fas fa-times'></i>",
-          label: game.i18n.localize('BitDRoller.Close'),
+          label: game.i18n.localize('FitDRoller.Close'),
         },
       },
       default: "yes",
@@ -148,30 +133,19 @@ class Roller {
    * @param {string} position position
    * @param {string} effect effect
    */
-  async BitDRoller(
+  async FitDRoller(
     attribute = "",
     diceAmount = 0,
     position = "risky",
     effect = "standard"
   ) {
-    let versionParts;
-    if (game.version) {
-      versionParts = game.version.split('.');
-      game.majorVersion = parseInt(versionParts[0]);
-      game.minorVersion = parseInt(versionParts[1]);
-    } else {
-      versionParts = game.data.version.split('.');
-      game.majorVersion = parseInt(versionParts[1]);
-      game.minorVersion = parseInt(versionParts[2]);
-    }
-
     let zeromode = false;
     if (diceAmount < 0) { diceAmount = 0; }
     if (diceAmount === 0) { zeromode = true; diceAmount = 2; }
 
     const r = new Roll(`${diceAmount}d6`, {});
 
-    if (game.majorVersion > 7) {
+    if (this.getFoundryVersion().major > 7) {
       await r.evaluate({async: true});
     } else {
       r.roll();
@@ -197,17 +171,6 @@ class Roller {
     position = "",
     effect = ""
   ) {
-    let versionParts;
-    if (game.version) {
-      versionParts = game.version.split('.');
-      game.majorVersion = parseInt(versionParts[0]);
-      game.minorVersion = parseInt(versionParts[1]);
-    } else {
-      versionParts = game.data.version.split('.');
-      game.majorVersion = parseInt(versionParts[1]);
-      game.minorVersion = parseInt(versionParts[2]);
-    }
-
     const speaker = ChatMessage.getSpeaker();
     let rolls = [];
 
@@ -216,39 +179,39 @@ class Roller {
     // Retrieve Roll status.
     let rollStatus = "";
 
-    rollStatus = this.getBitDActionRollStatus(rolls, zeromode);
-    let color = game.settings.get("foundryvtt-bitd-roller", "backgroundColor");
+    rollStatus = this.getFitDActionRollStatus(rolls, zeromode);
+    let color = game.settings.get("fitd-roller", "backgroundColor");
 
     let positionLocalize = '';
     switch (position)
     {
       case 'controlled':
-        positionLocalize = 'BitDRoller.PositionControlled';
+        positionLocalize = 'FitDRoller.PositionControlled';
         break;
       case 'desperate':
-        positionLocalize = 'BitDRoller.PositionDesperate';
+        positionLocalize = 'FitDRoller.PositionDesperate';
         break;
       case 'risky':
       default:
-        positionLocalize = 'BitDRoller.PositionRisky';
+        positionLocalize = 'FitDRoller.PositionRisky';
     }
 
     let effectLocalize = '';
     switch (effect)
     {
       case 'limited':
-        effectLocalize = 'BitDRoller.EffectLimited';
+        effectLocalize = 'FitDRoller.EffectLimited';
         break;
       case 'great':
-        effectLocalize = 'BitDRoller.EffectGreat';
+        effectLocalize = 'FitDRoller.EffectGreat';
         break;
       case 'standard':
       default:
-        effectLocalize = 'BitDRoller.EffectStandard';
+        effectLocalize = 'FitDRoller.EffectStandard';
     }
 
     const result = await renderTemplate(
-      "modules/foundryvtt-bitd-roller/templates/bitd-roll.html",
+      "modules/fitd-roller/templates/fitd-roll.html",
       {
         rolls,
         rollStatus,
@@ -269,7 +232,7 @@ class Roller {
       roll: r
     };
 
-    if (game.majorVersion > 7) {
+    if (this.getFoundryVersion().major > 7) {
       return CONFIG.ChatMessage.documentClass.create(messageData, {});
     } else {
       return CONFIG.ChatMessage.entityClass.create(messageData, {});
@@ -286,7 +249,7 @@ class Roller {
    * @param {Boolean} zeromode whether to treat as if 0d
    * @returns {string} success/failure status of roll
    */
-  getBitDActionRollStatus(rolls, zeromode = false) {
+  getFitDActionRollStatus(rolls, zeromode = false) {
     let sortedRolls = [];
     // Sort roll values from lowest to highest.
     sortedRolls = rolls.map((i) => i.result).sort();
@@ -330,18 +293,18 @@ class Roller {
 }
 
 Hooks.once("ready", () => {
-  game.bitdRoller = new Roller();
+  game.fitdRoller = new Roller();
 });
 
 // getSceneControlButtons
 Hooks.on("renderSceneControls", (app, html) => {
   const diceRoller = $(`
-    <li class="scene-control" title="BitD Roller">
+    <li class="scene-control" title="FitD Roller">
       <i class="fas fa-dice"></i>
     </li>
   `);
   diceRoller.on("click", async function () {
-    await game.bitdRoller.BitDRollerPopup();
+    await game.fitdRoller.FitDRollerPopup();
   });
   if (isNewerVersion(game.version, '9.220')) {
     html.children().first().append(diceRoller);
@@ -350,65 +313,91 @@ Hooks.on("renderSceneControls", (app, html) => {
   }
 });
 
-Hooks.once("init", () => {
-  game.settings.register("foundryvtt-bitd-roller", "backgroundColor", {
-    "name": game.i18n.localize("BitDRoller.backgroundColorName"),
-    "hint": game.i18n.localize("BitDRoller.backgroundColorHint"),
+Hooks.once("setup", () => {
+  const defaultActions = [
+    'Hunt',
+    'Study',
+    'Survey',
+    'Tinker',
+    'Finesse',
+    'Prowl',
+    'Skirmish',
+    'Wreck',
+    'Attune',
+    'Command',
+    'Consort',
+    'Sway'
+  ];
+
+  game.settings.register("fitd-roller", "backgroundColor", {
+    "name": game.i18n.localize("FitDRoller.backgroundColorName"),
+    "hint": game.i18n.localize("FitDRoller.backgroundColorHint"),
     "scope": "world",
     "config": true,
     "choices": {
-      "gray": game.i18n.localize("BitDRoller.backgroundColorGray"),
-      "black": game.i18n.localize("BitDRoller.backgroundColorBlack")
+      "gray": game.i18n.localize("FitDRoller.backgroundColorGray"),
+      "black": game.i18n.localize("FitDRoller.backgroundColorBlack")
     },
     "default": "gray",
     "type": String
   });
 
-  game.settings.register("foundryvtt-bitd-roller", "maxDiceCount", {
-    "name": game.i18n.localize("BitDRoller.maxDiceCountName"),
-    "hint": game.i18n.localize("BitDRoller.maxDiceCountHint"),
+  game.settings.register("fitd-roller", "maxDiceCount", {
+    "name": game.i18n.localize("FitDRoller.maxDiceCountName"),
+    "hint": game.i18n.localize("FitDRoller.maxDiceCountHint"),
     "scope": "world",
     "config": true,
     "default": 10,
     "type": Number
   });
 
-  game.settings.register("foundryvtt-bitd-roller", "defaultDiceCount", {
-    "name": game.i18n.localize("BitDRoller.defaultDiceCountName"),
-    "hint": game.i18n.localize("BitDRoller.defaultDiceCountHint"),
+  game.settings.register("fitd-roller", "defaultDiceCount", {
+    "name": game.i18n.localize("FitDRoller.defaultDiceCountName"),
+    "hint": game.i18n.localize("FitDRoller.defaultDiceCountHint"),
     "scope": "world",
     "config": true,
     "default": 2,
     "type": Number
   });
 
-  game.settings.register("foundryvtt-bitd-roller", "defaultPosition", {
-    "name": game.i18n.localize("BitDRoller.defaultPositionName"),
-    "hint": game.i18n.localize("BitDRoller.defaultPositionHint"),
+  game.settings.register("fitd-roller", "actions", {
+    "name": game.i18n.localize("FitDRoller.actionsName"),
+    "hint": game.i18n.localize("FitDRoller.actionsHint"),
+    "scope": "world",
+    "config": true,
+    "type": String,
+    "default": defaultActions.map(item => {
+      return game.i18n.localize(`FitDRoller.DefaultAction${item}`)
+    }).join(',')
+  });
+
+  game.settings.register("fitd-roller", "defaultPosition", {
+    "name": game.i18n.localize("FitDRoller.defaultPositionName"),
+    "hint": game.i18n.localize("FitDRoller.defaultPositionHint"),
     "scope": "world",
     "config": true,
     "type": String,
     "choices": {
-      "controlled": game.i18n.localize("BitDRoller.PositionControlled"),
-      "risky": game.i18n.localize("BitDRoller.PositionRisky"),
-      "desperate": game.i18n.localize("BitDRoller.PositionDesperate")
+      "controlled": game.i18n.localize("FitDRoller.PositionControlled"),
+      "risky": game.i18n.localize("FitDRoller.PositionRisky"),
+      "desperate": game.i18n.localize("FitDRoller.PositionDesperate")
     },
     "default": "risky"
   });
 
-  game.settings.register("foundryvtt-bitd-roller", "defaultEffect", {
-    "name": game.i18n.localize("BitDRoller.defaultEffectName"),
-    "hint": game.i18n.localize("BitDRoller.defaultEffectHint"),
+  game.settings.register("fitd-roller", "defaultEffect", {
+    "name": game.i18n.localize("FitDRoller.defaultEffectName"),
+    "hint": game.i18n.localize("FitDRoller.defaultEffectHint"),
     "scope": "world",
     "config": true,
     "type": String,
     "choices": {
-      "great": game.i18n.localize("BitDRoller.EffectGreat"),
-      "standard": game.i18n.localize("BitDRoller.EffectStandard"),
-      "limited": game.i18n.localize("BitDRoller.EffectLimited")
+      "great": game.i18n.localize("FitDRoller.EffectGreat"),
+      "standard": game.i18n.localize("FitDRoller.EffectStandard"),
+      "limited": game.i18n.localize("FitDRoller.EffectLimited")
     },
     "default": "standard"
   });
 });
 
-console.log("BitDRoller | Blades in the Dark Dice Roller loaded");
+console.log("FitDRoller | Blades in the Dark Dice Roller loaded");

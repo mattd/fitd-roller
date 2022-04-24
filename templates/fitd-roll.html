@@ -1,4 +1,4 @@
-<div class="dice-tooltip bitd-die-tooltip">
+<div class="dice-tooltip fitd-die-tooltip">
   {{#if attribute}}
     <div class="chat-label label-stripe-chat">{{attribute}}</div>
   {{/if}}
@@ -9,66 +9,66 @@
 
   {{#if zeromode}}
     <div class="chat-label-small-red label-stripe-chat-small-red">
-      {{{localize "BitDRoller.RollZeromode"}}}
+      {{{localize "FitDRoller.RollZeromode"}}}
     </div>
   {{/if}}
 
   {{#if (eq rollStatus "critical-success")}}
     <div class="die {{rollStatus}}">
-      {{localize "BitDRoller.RollCriticalSuccess"}}
+      {{localize "FitDRoller.RollCriticalSuccess"}}
     </div>
     <div class="description">
-      <p>{{{localize "BitDRoller.RollDoWithIncreasedEffect"}}}</p>
+      <p>{{{localize "FitDRoller.RollDoWithIncreasedEffect"}}}</p>
       {{#if (eq position "desperate")}}
-        <p>{{{localize "BitDRoller.RollXP"}}}</p>
+        <p>{{{localize "FitDRoller.RollXP"}}}</p>
       {{/if}}
     </div>
   {{/if}}
 
   {{#if (eq rollStatus "success")}}
-    <div class="die {{rollStatus}}">{{localize "BitDRoller.RollSuccess"}}</div>
+    <div class="die {{rollStatus}}">{{localize "FitDRoller.RollSuccess"}}</div>
     <div class="description">
-      <p>{{{localize "BitDRoller.RollDo"}}}</p>
+      <p>{{{localize "FitDRoller.RollDo"}}}</p>
       {{#if (eq position "desperate")}}
-        <p>{{{localize "BitDRoller.RollXP"}}}</p>
+        <p>{{{localize "FitDRoller.RollXP"}}}</p>
       {{/if}}
     </div>
   {{/if}}
 
   {{#if (eq rollStatus "partial-success")}}
     <div class="die {{rollStatus}}">
-      {{localize "BitDRoller.RollPartialSuccess"}}
+      {{localize "FitDRoller.RollPartialSuccess"}}
     </div>
     <div class="description">
       <p>
         {{#if (eq position "controlled")}}
-          {{{localize "BitDRoller.RollPartialSuccessPositionControlled"}}}
+          {{{localize "FitDRoller.RollPartialSuccessPositionControlled"}}}
         {{else if (eq position "risky")}}
-          {{{localize "BitDRoller.RollPartialSuccessPositionRisky"}}}
+          {{{localize "FitDRoller.RollPartialSuccessPositionRisky"}}}
         {{else}}
-          {{{localize "BitDRoller.RollPartialSuccessPosition"}}}
+          {{{localize "FitDRoller.RollPartialSuccessPosition"}}}
         {{/if}}
       </p>
       {{#if (eq position "desperate")}}
-        <p>{{{localize "BitDRoller.RollXP"}}}</p>
+        <p>{{{localize "FitDRoller.RollXP"}}}</p>
       {{/if}}
     </div>
   {{/if}}
 
   {{#if (eq rollStatus "failure")}}
-    <div class="die {{rollStatus}}">{{localize "BitDRoller.RollFailure"}}</div>
+    <div class="die {{rollStatus}}">{{localize "FitDRoller.RollFailure"}}</div>
     <div class="description">
       <p>
         {{#if (eq position "controlled")}}
-          {{{localize "BitDRoller.RollFailurePositionControlled"}}}
+          {{{localize "FitDRoller.RollFailurePositionControlled"}}}
         {{else if (eq position "risky")}}
-          {{{localize "BitDRoller.RollFailurePositionRisky"}}}
+          {{{localize "FitDRoller.RollFailurePositionRisky"}}}
         {{else}}
-          {{{localize "BitDRoller.RollFailurePositionDesperate"}}}
+          {{{localize "FitDRoller.RollFailurePositionDesperate"}}}
         {{/if}}
       </p>
       {{#if (eq position "desperate")}}
-        <p>{{{localize "BitDRoller.RollXP"}}}</p>
+        <p>{{{localize "FitDRoller.RollXP"}}}</p>
       {{/if}}
     </div>
   {{/if}}
@@ -76,7 +76,7 @@
   <ol class="dice-rolls">
     {{#each this.rolls}}
       {{#if this.result}}
-        <li class="roll die bitdd6 {{../this.color}}"
+        <li class="roll die fitdd6 {{../this.color}}"
           {{#if (eq this.result 6)}}
             style="color: green;"
           {{else if (eq this.result 3)}}
