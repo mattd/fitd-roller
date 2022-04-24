@@ -211,7 +211,7 @@ class Roller {
     }
 
     const result = await renderTemplate(
-      "modules/foundryvtt-fitd-roller/templates/fitd-roll.html",
+      "modules/fitd-roller/templates/fitd-roll.html",
       {
         rolls,
         rollStatus,
