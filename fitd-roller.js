@@ -179,10 +179,10 @@ class FitDRoller {
 
     rolls = (r.terms)[0].results;
 
-    // Retrieve Roll status.
-    let rollStatus = "";
+    // Retrieve Roll outcome.
+    let rollOutcome = "";
 
-    rollStatus = this.getRollStatus(rolls, zeromode);
+    rollOutcome = this.getRollOutcome(rolls, zeromode);
     let color = game.settings.get("fitd-roller", "backgroundColor");
 
     let positionLocalize = '';
@@ -217,7 +217,7 @@ class FitDRoller {
       "modules/fitd-roller/templates/fitd-roll.html",
       {
         rolls,
-        rollStatus,
+        rollOutcome,
         attribute,
         position,
         positionLocalize,
@@ -243,24 +243,24 @@ class FitDRoller {
   }
 
   /**
-   *  Gets status of the Roll.
+   *  Gets outcome of the Roll.
    *  - failure
    *  - partial-success
    *  - success
    *  - critical-success
    * @param {Array} rolls results of dice rolls
    * @param {Boolean} zeromode whether to treat as if 0d
-   * @returns {string} success/failure status of roll
+   * @returns {string} success/failure outcome of roll
    */
-  getRollStatus(rolls, zeromode = false) {
+  getRollOutcome(rolls, zeromode = false) {
     let sortedRolls = [];
     // Sort roll values from lowest to highest.
     sortedRolls = rolls.map((i) => i.result).sort();
 
-    let rollStatus = "failure";
+    let rollOutcome = "failure";
 
     if (sortedRolls[0] === 6 && zeromode) {
-      rollStatus = "critical-success";
+      rollOutcome = "critical-success";
     } else {
       let useDie;
       let prevUseDie = false;
@@ -277,21 +277,21 @@ class FitDRoller {
 
       if (useDie <= 3) {
          // 1,2,3 = failure
-        rollStatus = "failure";
+        rollOutcome = "failure";
       } else if (useDie === 6) {
         if (prevUseDie && prevUseDie === 6) {
           // 6,6 - critical success
-          rollStatus = "critical-success";
+          rollOutcome = "critical-success";
         } else {
           // 6 - success
-          rollStatus = "success";
+          rollOutcome = "success";
         }
       } else {
         // else (4,5) = partial success
-        rollStatus = "partial-success";
+        rollOutcome = "partial-success";
       }
     }
-    return rollStatus;
+    return rollOutcome;
   }
 }
 
