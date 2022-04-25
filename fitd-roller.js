@@ -3,7 +3,7 @@ class FitDRoller {
   * Gets Foundry major and minor versions.
   * @return {{major: number, minor: number}} version object
   */
-  getFoundryVersion () {
+  getFoundryVersion() {
     let versionParts;
 
     if (game.version) {
@@ -304,7 +304,7 @@ Hooks.on("renderSceneControls", (app, html) => {
     <li class="scene-control" title="FitD Roller">
       <i class="fas fa-dice"></i>
     </li>
-  `);]1
+  `);
   diceRoller.on("click", async function () {
     await game.fitdRoller.showRoller();
   });
