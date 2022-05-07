@@ -255,12 +255,12 @@ class FitDRoller {
   getRollOutcome(rolls, zeroMode = false) {
     let sortedRolls = [];
     // Sort roll values from lowest to highest.
-    sortedRolls = rolls.map((i) => i.result).sort();
+    sortedRolls = rolls.map(i => i.result).sort();
 
     let rollOutcome = "failure";
 
     if (sortedRolls[0] === 6 && zeroMode) {
-      rollOutcome = "critical-success";
+      rollOutcome = "success";
     } else {
       let useDie;
       let prevUseDie = false;
