@@ -7,14 +7,14 @@
     {{{localize positionLocalize}}} | {{{localize effectLocalize}}}
   </div>
 
-  {{#if zeromode}}
+  {{#if zeroMode}}
     <div class="chat-label-small-red label-stripe-chat-small-red">
-      {{{localize "FitDRoller.RollZeromode"}}}
+      {{{localize "FitDRoller.RollZeroMode"}}}
     </div>
   {{/if}}
 
-  {{#if (eq rollStatus "critical-success")}}
-    <div class="die {{rollStatus}}">
+  {{#if (eq rollOutcome "critical-success")}}
+    <div class="die {{rollOutcome}}">
       {{localize "FitDRoller.RollCriticalSuccess"}}
     </div>
     <div class="description">
@@ -25,8 +25,8 @@
     </div>
   {{/if}}
 
-  {{#if (eq rollStatus "success")}}
-    <div class="die {{rollStatus}}">{{localize "FitDRoller.RollSuccess"}}</div>
+  {{#if (eq rollOutcome "success")}}
+    <div class="die {{rollOutcome}}">{{localize "FitDRoller.RollSuccess"}}</div>
     <div class="description">
       <p>{{{localize "FitDRoller.RollDo"}}}</p>
       {{#if (eq position "desperate")}}
@@ -35,8 +35,8 @@
     </div>
   {{/if}}
 
-  {{#if (eq rollStatus "partial-success")}}
-    <div class="die {{rollStatus}}">
+  {{#if (eq rollOutcome "partial-success")}}
+    <div class="die {{rollOutcome}}">
       {{localize "FitDRoller.RollPartialSuccess"}}
     </div>
     <div class="description">
@@ -55,8 +55,8 @@
     </div>
   {{/if}}
 
-  {{#if (eq rollStatus "failure")}}
-    <div class="die {{rollStatus}}">{{localize "FitDRoller.RollFailure"}}</div>
+  {{#if (eq rollOutcome "failure")}}
+    <div class="die {{rollOutcome}}">{{localize "FitDRoller.RollFailure"}}</div>
     <div class="description">
       <p>
         {{#if (eq position "controlled")}}

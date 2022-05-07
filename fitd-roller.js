@@ -3,7 +3,7 @@ class FitDRoller {
   * Gets Foundry major and minor versions.
   * @return {{major: number, minor: number}} version object
   */
-  getFoundryVersion () {
+  getFoundryVersion() {
     let versionParts;
 
     if (game.version) {
@@ -142,9 +142,9 @@ class FitDRoller {
     position = "risky",
     effect = "standard"
   ) {
-    let zeromode = false;
+    let zeroMode = false;
     if (diceAmount < 0) { diceAmount = 0; }
-    if (diceAmount === 0) { zeromode = true; diceAmount = 2; }
+    if (diceAmount === 0) { zeroMode = true; diceAmount = 2; }
 
     const r = new Roll(`${diceAmount}d6`, {});
 
@@ -154,7 +154,7 @@ class FitDRoller {
       r.roll();
     }
     return await this.showChatRollMessage(
-      r, zeromode, attribute, position, effect
+      r, zeroMode, attribute, position, effect
     );
   }
 
@@ -162,14 +162,14 @@ class FitDRoller {
    * Shows Chat message for a roll.
    *
    * @param {Roll} r array of rolls
-   * @param {Boolean} zeromode whether to treat as if 0d
+   * @param {Boolean} zeroMode whether to treat as if 0d
    * @param {string} attribute arbitrary label for the roll
    * @param {string} position position
    * @param {string} effect effect
    */
   async showChatRollMessage(
     r,
-    zeromode,
+    zeroMode,
     attribute = "",
     position = "",
     effect = ""
@@ -179,10 +179,10 @@ class FitDRoller {
 
     rolls = (r.terms)[0].results;
 
-    // Retrieve Roll status.
-    let rollStatus = "";
+    // Retrieve Roll outcome.
+    let rollOutcome = "";
 
-    rollStatus = this.getRollStatus(rolls, zeromode);
+    rollOutcome = this.getRollOutcome(rolls, zeroMode);
     let color = game.settings.get("fitd-roller", "backgroundColor");
 
     let positionLocalize = '';
@@ -213,59 +213,59 @@ class FitDRoller {
         effectLocalize = 'FitDRoller.EffectStandard';
     }
 
-    const result = await renderTemplate(
+    const renderedTemplate = await renderTemplate(
       "modules/fitd-roller/templates/fitd-roll.html",
       {
         rolls,
-        rollStatus,
+        rollOutcome,
         attribute,
         position,
         positionLocalize,
         effect,
         effectLocalize,
-        zeromode,
+        zeroMode,
         color
       }
     );
 
-    const messageData = {
+    const message = {
       speaker,
-      content: result,
+      content: renderedTemplate,
       type: CONST.CHAT_MESSAGE_TYPES.ROLL,
       roll: r
     };
 
     if (this.getFoundryVersion().major > 7) {
-      return CONFIG.ChatMessage.documentClass.create(messageData, {});
+      return CONFIG.ChatMessage.documentClass.create(message, {});
     } else {
-      return CONFIG.ChatMessage.entityClass.create(messageData, {});
+      return CONFIG.ChatMessage.entityClass.create(message, {});
     }
   }
 
   /**
-   *  Gets status of the Roll.
+   *  Gets outcome of the Roll.
    *  - failure
    *  - partial-success
    *  - success
    *  - critical-success
    * @param {Array} rolls results of dice rolls
-   * @param {Boolean} zeromode whether to treat as if 0d
-   * @returns {string} success/failure status of roll
+   * @param {Boolean} zeroMode whether to treat as if 0d
+   * @returns {string} success/failure outcome of roll
    */
-  getRollStatus(rolls, zeromode = false) {
+  getRollOutcome(rolls, zeroMode = false) {
     let sortedRolls = [];
     // Sort roll values from lowest to highest.
-    sortedRolls = rolls.map((i) => i.result).sort();
+    sortedRolls = rolls.map(i => i.result).sort();
 
-    let rollStatus = "failure";
+    let rollOutcome = "failure";
 
-    if (sortedRolls[0] === 6 && zeromode) {
-      rollStatus = "critical-success";
+    if (sortedRolls[0] === 6 && zeroMode) {
+      rollOutcome = "success";
     } else {
       let useDie;
       let prevUseDie = false;
 
-      if (zeromode) {
+      if (zeroMode) {
         useDie = sortedRolls[0];
       } else {
         useDie = sortedRolls[sortedRolls.length - 1];
@@ -277,21 +277,21 @@ class FitDRoller {
 
       if (useDie <= 3) {
          // 1,2,3 = failure
-        rollStatus = "failure";
+        rollOutcome = "failure";
       } else if (useDie === 6) {
         if (prevUseDie && prevUseDie === 6) {
           // 6,6 - critical success
-          rollStatus = "critical-success";
+          rollOutcome = "critical-success";
         } else {
           // 6 - success
-          rollStatus = "success";
+          rollOutcome = "success";
         }
       } else {
         // else (4,5) = partial success
-        rollStatus = "partial-success";
+        rollOutcome = "partial-success";
       }
     }
-    return rollStatus;
+    return rollOutcome;
   }
 }
 
