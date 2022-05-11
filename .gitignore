@@ -1,3 +1,8 @@
+/fitd-roller.js
+module/fitd-roller.js
+build.tgz
+node_modules
+
 # OS cruft
 .DS_Store
 
