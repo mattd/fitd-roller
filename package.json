@@ -1,6 +1,6 @@
 {
   "name": "foundryvtt-fitd-roller",
-  "version": "1.8.3",
+  "version": "1.8.4",
   "description": "Provides a generic Dice Roller for Forged in the Dark games",
   "main": "module/src/init.js",
   "scripts": {
