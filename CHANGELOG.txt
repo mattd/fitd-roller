@@ -23,3 +23,5 @@
 1.7.0  Rename module, add BitD actions
 
 1.8.0  Reverted module rename, genericized action definition
+
+2.0.0  Add infrastructure, official v2 release
