@@ -1,0 +1,30 @@
+{
+  "name": "foundryvtt-fitd-roller",
+  "version": "1.8.3",
+  "description": "Provides a generic Dice Roller for Forged in the Dark games",
+  "main": "module/src/init.js",
+  "scripts": {
+    "build:release": "rollup module/src/init.js --file module/fitd-roller.js",
+    "build:test": "rollup module/src/fitd-roller.js --file fitd-roller.js --format cjs",
+    "clean": "rm module/fitd-roller.js fitd-roller.js build.tgz",
+    "package": "tar --exclude='./src' -czvf build.tgz -C module .",
+    "release": "npm test && npm run build:release && npm run package",
+    "test": "npm run build:test && ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattd/foundryvtt-fitd-roller.git"
+  },
+  "author": "megastruktur, Andrew Garinger, Matt Dawson",
+  "license": "CC-BY-3.0",
+  "bugs": {
+    "url": "https://github.com/mattd/foundryvtt-fitd-roller/issues"
+  },
+  "homepage": "https://github.com/mattd/foundryvtt-fitd-roller#readme",
+  "devDependencies": {
+    "ava": "^4.2.0"
+  },
+  "ava": {
+    "verbose": "true"
+  }
+}
