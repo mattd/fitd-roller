@@ -1,7 +1,7 @@
 name: On Push
 on: [push]
 jobs:
-  on-push:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -13,9 +13,16 @@ jobs:
         run: npm install --include=dev
       - name: Run Tests
         run: npm test
-      - name: Release
+      - name: Build
+        id: build
         if: startsWith(github.ref, 'refs/tags/')
-        run: npm run build:release && npm run package
+        run: npm run build:release
+      - name: Package
+        id: package
+        if: steps.build.outcome != 'skipped'
+        run: npm run package
+      - name: Release
+        if: steps.package.outcome != 'skipped'
         uses: softprops/action-gh-release@v1
         with:
           files: build.zip
