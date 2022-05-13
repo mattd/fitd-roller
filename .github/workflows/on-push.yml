@@ -1,7 +1,7 @@
-name: Release Module
+name: On Push
 on: [push]
 jobs:
-  release:
+  on-push:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -13,13 +13,9 @@ jobs:
         run: npm install --include=dev
       - name: Run Tests
         run: npm test
-      - name: Build
-        run: npm run build:release
-      - name: Package
-        run: npm run package
       - name: Release
-        uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
+        run: npm run build:release && npm run package
+        uses: softprops/action-gh-release@v1
         with:
           files: build.zip
-
