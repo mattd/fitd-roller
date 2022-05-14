@@ -14,12 +14,12 @@ const legacyGame = {
   }
 };
 
-test("getFoundryVersion returns the correct version for a current game", t => {
+test("returns the correct version for a current game", t => {
   const version = fitdRoller.getFoundryVersion(currentGame);
   t.deepEqual(version, { major: 9, minor: 0 });
 });
 
-test("getFoundryVersion returns the correct version for a legacy game", t => {
+test("returns the correct version for a legacy game", t => {
   const version = fitdRoller.getFoundryVersion(legacyGame);
   t.deepEqual(version, { major: 7, minor: 1 });
 });
