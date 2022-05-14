@@ -5,18 +5,18 @@ Hooks.once("ready", () => {
 });
 
 Hooks.on("renderSceneControls", (app, html) => {
-  const diceRoller = $(`
+  const control = $(`
     <li class="scene-control" title="FitD Roller">
       <i class="fas fa-dice"></i>
     </li>
   `);
-  diceRoller.on("click", async function () {
+  control.on("click", async function () {
     await game.fitdRoller.showRoller();
   });
   if (isNewerVersion(game.version, '9.220')) {
-    html.children().first().append(diceRoller);
+    html.children().first().append(control);
   } else {
-    html.append(diceRoller);
+    html.append(control);
   }
 });
 
