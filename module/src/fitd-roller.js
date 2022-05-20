@@ -280,14 +280,14 @@ class FitDRoller {
         rollOutcome = "failure";
       } else if (useDie === 6) {
         if (prevUseDie && prevUseDie === 6) {
-          // 6,6 - critical success
+          // 6,6 = critical success
           rollOutcome = "critical-success";
         } else {
-          // 6 - success
+          // 6 = success
           rollOutcome = "success";
         }
       } else {
-        // else (4,5) = partial success
+        // 4,5 = partial success
         rollOutcome = "partial-success";
       }
     }
