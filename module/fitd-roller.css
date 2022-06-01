@@ -1,12 +1,11 @@
 :root {
-	--almost_white: #eeefff;
-	--red: #ff0000;
-	--holoblue: #33b5e5;
-	--holobluemed: #84d2ef;
-	--holobluelt: #ade1f4;
-	--redmed: #ff6666;
-	--redlt: #ffb2b2;
-	--darkblue: #001324;
+  --almostwhite: #eeefff;
+  --almostblack: #191813;
+  --mediumgray: #999;
+  --darkgreen: #008000;
+  --brightgreen: #12a012;
+  --mediumblue: #04578f;
+  --bluegray: #92a6ad;
 }
 * .fitd-die-tooltip header {
   margin-bottom: 10px;
@@ -63,8 +62,8 @@
   flex-direction: column;
 }
 * .fitd-die-tooltip .black-label {
-  background-color: #191813;
-  color: #EEEFFF;
+  background-color: var(--almostblack);
+  color: var(--almostwhite);
   font-size: 21px;
   text-align: center;
   padding: 0px 5px;
@@ -72,8 +71,8 @@
   text-transform: capitalize;
 }
 * .fitd-die-tooltip .gray-label {
-  background-color: #999;
-  color: #191813;
+  background-color: var(--mediumgray);
+  color: var(--almostblack);
   font-size: 21px;
   text-align: center;
   padding: 0px 5px;
@@ -81,8 +80,8 @@
   text-transform: capitalize;
 }
 * .fitd-die-tooltip .chat-label {
-  background-color: #191813;
-  color: #EEEFFF;
+  background-color: var(--almostblack);
+  color: var(--almostwhite);
   font-size: 21px;
   text-align: center;
   padding: 0px 5px;
@@ -90,8 +89,8 @@
   text-transform: capitalize;
 }
 * .fitd-die-tooltip .chat-label-small {
-  background-color: #999;
-  color: #191813;
+  background-color: var(--mediumgray);
+  color: var(--almostblack);
   font-size: small;
   text-align: center;
   padding: 3px 5px;
@@ -99,15 +98,15 @@
 }
 * .fitd-die-tooltip .chat-label-small-red {
   background-color: red;
-  color: #191813;
+  color: var(--almostblack);
   font-size: small;
   text-align: center;
   padding: 3px 5px;
 }
 * .fitd-die-tooltip .label-stripe {
   text-transform: uppercase;
-  background-color: #191813;
-  color: #EEEFFF;
+  background-color: var(--almostblack);
+  color: var(--almostwhite);
   margin-bottom: 10px;
   position: relative;
   padding-left: 10px;
@@ -125,7 +124,7 @@
 }
 * .fitd-die-tooltip .label-stripe-red {
   text-transform: uppercase;
-  background-color: #191813;
+  background-color: var(--almostblack);
   color: red;
   margin-bottom: 10px;
   position: relative;
@@ -136,7 +135,7 @@
 }
 * .fitd-die-tooltip .label-stripe-gray {
   text-transform: uppercase;
-  background-color: #92a6ad;
+  background-color: var(--bluegray);
   margin-bottom: 10px;
   position: relative;
   padding-left: 10px;
@@ -146,8 +145,8 @@
 }
 * .fitd-die-tooltip .label-stripe-chat {
   text-transform: uppercase;
-  background-color: #191813;
-  color: #EEEFFF;
+  background-color: var(--almostblack);
+  color: var(--almostwhite);
   margin-bottom: 10px;
   position: relative;
   padding-top: 3px;
@@ -157,8 +156,8 @@
 }
 * .fitd-die-tooltip .label-stripe-chat-small {
   text-transform: capitalize;
-  background-color: #999;
-  color: #191813;
+  background-color: var(--mediumgray);
+  color: var(--almostblack);
   position: relative;
   padding-top: 3px;
   display: flex;
@@ -167,7 +166,7 @@
 * .fitd-die-tooltip .label-stripe-chat-small-red {
   text-transform: capitalize;
   background-color: red;
-  color: #191813;
+  color: var(--almostblack);
   position: relative;
   padding-top: 3px;
   display: flex;
@@ -179,8 +178,8 @@
 * .fitd-die-tooltip .tooltip .tooltiptext {
   visibility: hidden;
   width: 200px;
-  background-color: #191813;
-  color: #EEEFFF;
+  background-color: var(--almostblack);
+  color: var(--almostwhite);
   text-align: center;
   padding: 5px;
   border-radius: 6px;
@@ -199,18 +198,18 @@
 * .fitd-die-tooltip .die.great,
 * .fitd-die-tooltip .die.critical-resist,
 * .fitd-die-tooltip .die.critical-success {
-  color: #12a012;
+  color: var(--brightgreen);
 }
 * .fitd-die-tooltip .die.nodamage,
 * .fitd-die-tooltip .die.standard,
 * .fitd-die-tooltip .die.resist,
 * .fitd-die-tooltip .die.success {
-  color: #008000;
+  color: var(--darkgreen);
 }
 * .fitd-die-tooltip .die.malfunction,
 * .fitd-die-tooltip .die.limited,
 * .fitd-die-tooltip .die.partial-success {
-  color: #04578f;
+  color: var(--mediumblue);
 }
 * .fitd-die-tooltip .die.damaged,
 * .fitd-die-tooltip .die.poor,
@@ -219,7 +218,7 @@
 }
 * .dice-tooltip.fitd-die-tooltip .dice-rolls .roll.die.fitdd6.black {
   background-image: url(icons/d6-black.svg) !important;
-  color: var(--almost_white);
+  color: var(--almostwhite);
 }
 * .dice-tooltip.fitd-die-tooltip .dice-rolls .roll.die.fitdd6.gray {
   background-image: url(icons/d6-grey.svg) !important;
