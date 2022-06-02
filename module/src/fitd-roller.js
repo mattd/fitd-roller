@@ -175,15 +175,9 @@ class FitDRoller {
     effect = ""
   ) {
     const speaker = ChatMessage.getSpeaker();
-    let rolls = [];
-
-    rolls = (r.terms)[0].results;
-
-    // Retrieve Roll outcome.
-    let rollOutcome = "";
-
-    rollOutcome = this.getRollOutcome(rolls, zeroMode);
-    let color = game.settings.get("fitd-roller", "backgroundColor");
+    const rolls = r.terms[0].results;
+    const rollOutcome = this.getRollOutcome(rolls, zeroMode);
+    const color = game.settings.get("fitd-roller", "backgroundColor");
 
     let positionLocalize = '';
     switch (position)
@@ -253,18 +247,14 @@ class FitDRoller {
    * @returns {string} success/failure outcome of roll
    */
   getRollOutcome(rolls, zeroMode = false) {
-    let sortedRolls = [];
     // Sort roll values from lowest to highest.
-    sortedRolls = rolls.map(i => i.result).sort();
+    const sortedRolls = rolls.map(i => i.result).sort();
 
-    let rollOutcome = "failure";
+    let useDie, prevUseDie, rollOutcome = "failure";
 
     if (sortedRolls[0] === 6 && zeroMode) {
       rollOutcome = "success";
     } else {
-      let useDie;
-      let prevUseDie = false;
-
       if (zeroMode) {
         useDie = sortedRolls[0];
       } else {
@@ -280,14 +270,14 @@ class FitDRoller {
         rollOutcome = "failure";
       } else if (useDie === 6) {
         if (prevUseDie && prevUseDie === 6) {
-          // 6,6 - critical success
+          // 6,6 = critical success
           rollOutcome = "critical-success";
         } else {
-          // 6 - success
+          // 6 = success
           rollOutcome = "success";
         }
       } else {
-        // else (4,5) = partial success
+        // 4,5 = partial success
         rollOutcome = "partial-success";
       }
     }
