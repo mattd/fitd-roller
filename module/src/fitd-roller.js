@@ -175,15 +175,9 @@ class FitDRoller {
     effect = ""
   ) {
     const speaker = ChatMessage.getSpeaker();
-    let rolls = [];
-
-    rolls = (r.terms)[0].results;
-
-    // Retrieve Roll outcome.
-    let rollOutcome = "";
-
-    rollOutcome = this.getRollOutcome(rolls, zeroMode);
-    let color = game.settings.get("fitd-roller", "backgroundColor");
+    const rolls = (r.terms)[0].results;
+    const rollOutcome = this.getRollOutcome(rolls, zeroMode);
+    const color = game.settings.get("fitd-roller", "backgroundColor");
 
     let positionLocalize = '';
     switch (position)
