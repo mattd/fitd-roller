@@ -175,7 +175,7 @@ class FitDRoller {
     effect = ""
   ) {
     const speaker = ChatMessage.getSpeaker();
-    const rolls = (r.terms)[0].results;
+    const rolls = r.terms[0].results;
     const rollOutcome = this.getRollOutcome(rolls, zeroMode);
     const color = game.settings.get("fitd-roller", "backgroundColor");
 
@@ -247,9 +247,8 @@ class FitDRoller {
    * @returns {string} success/failure outcome of roll
    */
   getRollOutcome(rolls, zeroMode = false) {
-    let sortedRolls = [];
     // Sort roll values from lowest to highest.
-    sortedRolls = rolls.map(i => i.result).sort();
+    const sortedRolls = rolls.map(i => i.result).sort();
 
     let rollOutcome = "failure";
 
