@@ -250,14 +250,11 @@ class FitDRoller {
     // Sort roll values from lowest to highest.
     const sortedRolls = rolls.map(i => i.result).sort();
 
-    let rollOutcome = "failure";
+    let useDie, prevUseDie, rollOutcome = "failure";
 
     if (sortedRolls[0] === 6 && zeroMode) {
       rollOutcome = "success";
     } else {
-      let useDie;
-      let prevUseDie = false;
-
       if (zeroMode) {
         useDie = sortedRolls[0];
       } else {
