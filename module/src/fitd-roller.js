@@ -82,7 +82,8 @@ class FitDRoller {
                 ${game.i18n.localize('FitDRoller.PositionDesperate')}
               </option>
             </select>
-            <script>$('#pos option[value="${defaultPosition}"]').prop(
+            <script>
+              $('#pos option[value="${defaultPosition}"]').prop(
                 "selected", "selected"
               );
             </script>
