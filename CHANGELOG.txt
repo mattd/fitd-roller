@@ -25,3 +25,7 @@
 1.8.0  Reverted module rename, genericized action definition
 
 2.0.0  Add infrastructure, official v2 release
+
+2.1.0  Simplify testing, packaging, and deployment
+
+2.2.0  Update compatibility for v10
