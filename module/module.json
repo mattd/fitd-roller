@@ -15,7 +15,7 @@
       "discord": "matthewtdawson#9654"
     }
   ],
-  "version": "2.0.3",
+  "version": "2.1.0",
   "minimumCoreVersion": "0.7.5",
   "compatibleCoreVersion": "9",
 
@@ -36,6 +36,6 @@
   ],
   "url": "https://github.com/mattd/foundryvtt-fitd-roller",
   "manifest": "https://raw.githubusercontent.com/mattd/foundryvtt-fitd-roller/main/module/module.json",
-  "download": "https://github.com/mattd/foundryvtt-fitd-roller/releases/download/v2.0.3/build.zip",
+  "download": "https://github.com/mattd/foundryvtt-fitd-roller/releases/download/v2.1.0/build.zip",
   "bugs": "https://github.com/mattd/foundryvtt-fitd-roller/issues"
 }
