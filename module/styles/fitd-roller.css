@@ -217,9 +217,9 @@
   color: red;
 }
 * .dice-tooltip.fitd-die-tooltip .dice-rolls .roll.die.fitdd6.black {
-  background-image: url(icons/d6-black.svg) !important;
+  background-image: url(../icons/d6-black.svg) !important;
   color: var(--almostwhite);
 }
 * .dice-tooltip.fitd-die-tooltip .dice-rolls .roll.die.fitdd6.gray {
-  background-image: url(icons/d6-grey.svg) !important;
+  background-image: url(../icons/d6-grey.svg) !important;
 }

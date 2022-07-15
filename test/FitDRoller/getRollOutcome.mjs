@@ -1,6 +1,6 @@
-const test = require("ava");
+import test from 'ava';
 
-const { FitDRoller } = require("../../fitd-roller.js");
+import { FitDRoller } from "../../module/scripts/fitd-roller.mjs";
 
 const fitdRoller = new FitDRoller();
 

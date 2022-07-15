@@ -25,10 +25,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Install Dependencies
-        run: npm install --include=dev
-      - name: Build
-        run: npm run build:release
       - name: Package
         run: npm run package
       - name: Release

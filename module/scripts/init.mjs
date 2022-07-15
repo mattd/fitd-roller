@@ -1,4 +1,4 @@
-import { FitDRoller } from './fitd-roller.js';
+import { FitDRoller } from './fitd-roller.mjs';
 
 Hooks.once("ready", () => {
   game.fitdRoller = new FitDRoller();
