@@ -17,7 +17,11 @@
   ],
   "version": "2.1.0",
   "minimumCoreVersion": "0.7.5",
-  "compatibleCoreVersion": "9",
+  "compatibleCoreVersion": "10",
+  "compatibility": {
+    "minimum": "0.7.5",
+    "verified": "10"
+  },
 
   "styles": ["styles/fitd-roller.css"],
   "esmodules": ["scripts/init.mjs"],
