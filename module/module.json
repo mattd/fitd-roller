@@ -1,5 +1,5 @@
 {
-  "name": "fitd-roller",
+  "id": "fitd-roller",
   "title": "Forged in the Dark Roller",
   "description": "Provides a generic Dice Roller for Forged in the Dark games",
   "authors": [
@@ -15,12 +15,12 @@
       "discord": "matthewtdawson#9654"
     }
   ],
-  "version": "2.2.0",
+  "version": "2.3.0",
   "minimumCoreVersion": "0.7.5",
-  "compatibleCoreVersion": "10",
+  "compatibleCoreVersion": "11",
   "compatibility": {
     "minimum": "0.7.5",
-    "verified": "10"
+    "verified": "11"
   },
 
   "styles": ["styles/fitd-roller.css"],
@@ -40,6 +40,6 @@
   ],
   "url": "https://github.com/mattd/foundryvtt-fitd-roller",
   "manifest": "https://raw.githubusercontent.com/mattd/foundryvtt-fitd-roller/main/module/module.json",
-  "download": "https://github.com/mattd/foundryvtt-fitd-roller/releases/download/v2.2.0/build.zip",
+  "download": "https://github.com/mattd/foundryvtt-fitd-roller/releases/download/v2.3.0/build.zip",
   "bugs": "https://github.com/mattd/foundryvtt-fitd-roller/issues"
 }
